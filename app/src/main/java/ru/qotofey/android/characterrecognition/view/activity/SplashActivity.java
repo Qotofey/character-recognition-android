@@ -42,7 +42,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void initFunctionality() {
 //        Flowable
-//                .just(0)
+//                .just(null)
 //                .subscribe();
         mLayout.postDelayed(new Runnable() {
             @Override

@@ -2,20 +2,15 @@ package ru.qotofey.android.characterrecognition.view.activity;
 
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
-import javax.inject.Inject;
-
-import ru.qotofey.android.characterrecognition.App;
 import ru.qotofey.android.characterrecognition.R;
-import ru.qotofey.android.characterrecognition.app.navigation.Navigation;
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends BaseActivity {
 
     private ImageView mIconImageView;
     private Animation mAnimation;
@@ -24,12 +19,8 @@ public class SplashActivity extends AppCompatActivity {
 
     private static final int SPLASH_DURATION = 2500;
 
-    @Inject
-    Navigation mNavigation;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        App.getComponent().inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
@@ -42,8 +33,10 @@ public class SplashActivity extends AppCompatActivity {
 
     private void initFunctionality() {
 //        Flowable
-//                .just(null)
-//                .subscribe();
+//                .just(this)
+//                .subscribe(v -> {
+//
+//                });
         mLayout.postDelayed(new Runnable() {
             @Override
             public void run() {

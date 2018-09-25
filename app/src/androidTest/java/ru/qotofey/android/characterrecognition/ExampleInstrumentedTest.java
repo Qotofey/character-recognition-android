@@ -23,4 +23,6 @@ public class ExampleInstrumentedTest {
 
         assertEquals("ru.qotofey.android.characterrecognition", appContext.getPackageName());
     }
+
+
 }

@@ -4,6 +4,7 @@ import android.app.Application;
 
 import ru.qotofey.android.characterrecognition.di.component.AppComponent;
 import ru.qotofey.android.characterrecognition.di.component.DaggerAppComponent;
+import ru.qotofey.android.characterrecognition.di.module.AppModule;
 
 public class App extends Application {
 
@@ -22,6 +23,7 @@ public class App extends Application {
     private void init() {
         sAppComponent = DaggerAppComponent
                 .builder()
+                .appModule(new AppModule(this))
                 .build();
     }
 }

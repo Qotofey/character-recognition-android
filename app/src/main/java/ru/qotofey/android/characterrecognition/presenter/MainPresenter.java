@@ -29,9 +29,9 @@ public class MainPresenter {
                 1.0F, 1.0F, 0.0F,
         };
         Float[] result = new Float[] {
-                0.0F, 1.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F,
+                -1.0F, 1.0F, -1.0F, -1.0F, -1.0F, -1.0F, -1.0F, -1.0F, -1.0F, -1.0F,
         };
         mPerceptron.train(set, result);
-        mPerceptron.train(set, result);
+//        mPerceptron.train(set, result);
     }
 }

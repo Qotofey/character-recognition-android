@@ -11,7 +11,7 @@ public class Perceptron {
     private int mCountLayers;
     private int mCountOutputs;
 
-    private final Float H = 0.001F;
+    private final Float H = 0.5F;
 
     /**
      * ВНИМАНИЕ!!! НИКОГДА НЕ ИСПОЛЬЗУЙТЕ ЭТОТ КОНСТРУКТОР В ПРОДАКШЕНЕ, ОН СОЗДАЛ ИСКЛЮЧИТЕЛЬНО
@@ -78,11 +78,13 @@ public class Perceptron {
 
         //проверяем, следует ли изменить веса
         Float error_sum = 0.0F;
-        do {
+//        do {
 
             for (int i = 0; i < getOutput().length; i++) {
                 error_sum += (getOutput()[i] - results[i]) * (getOutput()[i] - results[i]);
             }
+            Log.e("SIGNAL[]: ", "" + error_sum);
+
             if (error_sum != 0.0F) {
                 //слои
                 for (int iter = mWeightMatrices.length - 1; iter >= 0; iter--) {
@@ -93,18 +95,18 @@ public class Perceptron {
                         for (int j = 0; j < getOutput().length; j++) {
                             //находим производную нашей ступенчатой функции
                             Float s = 0.0F;
-//                            for (int k = 0; k < mInputSignals.length; k++) {
-//                                s += mWeightMatrices[1].get()[i][j] * 2;
-//                            }
-                            errors[j] = 2 * (getOutput()[j] - results[j]);
+                            for (int k = 0; k < mInputSignals.length; k++) {
+                                s += mWeightMatrices[1].get()[i][j] * 2;
+                            }
+                            errors[j] = 2 * (getOutput()[j] - results[j]) * 2;
                             mWeightMatrices[iter].get()[i][j] -= H * errors[j]; //изменяем синаптический вес
-                            Log.e("[" + i + "][" + j + "]", "" + mWeightMatrices[iter].get()[i][j]);
+//                            Log.e("[" + i + "][" + j + "]", "" + mWeightMatrices[iter].get()[i][j]);
                         }
                     }
                 }
 
             }
-        } while (error_sum != -0.0F);
+//        } while (error_sum != 0.0F);
     }
 
     public void put(Float[] inputSignals) {
@@ -114,6 +116,7 @@ public class Perceptron {
     private Float[] getOutput() {
         return mLayers[mLayers.length - 1].getSignals();
     }
+
 
 
 }

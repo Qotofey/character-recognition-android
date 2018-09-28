@@ -35,9 +35,9 @@ public class DrawingView extends View {
         //исходные параметры рисуемых линий
         mPaintLine = new Paint();
         mPaintLine.setAntiAlias(true);              //сглаживаем края
-        mPaintLine.setColor(Color.BLUE);            //задаём цвет линии
+        mPaintLine.setColor(Color.BLACK);            //задаём цвет линии
         mPaintLine.setStyle(Paint.Style.STROKE);    //задаём стиль линии - сплошная
-        mPaintLine.setStrokeWidth(100);             //толшщина линии
+        mPaintLine.setStrokeWidth(200);             //толшщина линии
         mPaintLine.setStrokeCap(Paint.Cap.ROUND);   //закругляем линию на концах
     }
 
@@ -139,6 +139,51 @@ public class DrawingView extends View {
         Path path = mPathMap.get(lineId);           //получаем объект Path
         mBitmapCanvas.drawPath(path, mPaintLine);   //рисуем на mBitmapCanvas
         path.reset();                               //сброс объекта Path
+
+//        compressBitmap();
+//
+//        ByteBuffer buffer = ByteBuffer.allocate(mBitmap.getByteCount());
+//        mBitmap.copyPixelsToBuffer(buffer);
+//        byte[] bytes = buffer.array();
+//
+//        Float[] list = new Float[bytes.length / 4];
+//        for (int i = 0; i < bytes.length / 4; i++) {
+//            int j = 4 * i;
+//            byte byte0 = (bytes[j + 0] < 0) ? (byte) (bytes[j + 0] + 256) : bytes[j + 0];
+//            byte byte1 = (bytes[j + 1] < 0) ? (byte) (bytes[j + 1] + 256) : bytes[j + 1];
+//            byte byte2 = (bytes[j + 2] < 0) ? (byte) (bytes[j + 2] + 256) : bytes[j + 2];
+//            list[i] = ((float) (byte0 + byte1 + byte2) != 0.0F) ? 1.0F : 0.0F;
+//
+//        }
+//        Log.e("TAG", "" + list.length);
+//
+//        for (int i = 0; i < list.length; i++) {
+//            Log.e("(" + i + ")", "" + list[i]);
+//        }
+
+
+//        Perceptron perceptron = new Perceptron(list);
+
+    }
+
+    private void compressBitmap() {
+        //вычисляем ширину и высоту изображения
+        int width = mBitmap.getWidth();
+        int height = mBitmap.getHeight();
+
+        int halfWidth = width / 50;
+        int halfHeight = height / 50;
+
+        //сжимаем картинку
+        mBitmap = Bitmap.createScaledBitmap(mBitmap, halfWidth, halfHeight, false);
+    }
+
+    public Bitmap getBitmap() {
+        return mBitmap;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        mBitmap = bitmap;
     }
 
     //сохранение текущего изображения в галерее

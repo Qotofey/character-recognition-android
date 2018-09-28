@@ -5,6 +5,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import ru.qotofey.android.characterrecognition.app.navigation.Navigation;
+import ru.qotofey.android.characterrecognition.model.Perceptron;
 
 @Module
 public class SingletonModule {
@@ -13,6 +14,12 @@ public class SingletonModule {
     @Provides
     public Navigation provideNavigation() {
         return new Navigation();
+    }
+
+    @Singleton
+    @Provides
+    public Perceptron providePerceptron() {
+        return new Perceptron(2);
     }
 
 }

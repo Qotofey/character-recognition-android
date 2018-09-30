@@ -13,7 +13,7 @@ import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 
 @RunWith(JUnit4.class)
-public class NeuronTest {
+public class NeuronMyTest {
 
     private Neuron mNeuron_0;
     private Neuron mNeuron_1;

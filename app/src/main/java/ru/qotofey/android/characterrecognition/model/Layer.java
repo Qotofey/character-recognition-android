@@ -6,41 +6,41 @@ public class Layer {
     protected Float[] mInputSignals;
     protected Neuron[] mNeurons;
 
-    //первый запуск
-    public Layer(Float[] inputSignals) {
-        mInputSignals = inputSignals;
-        int count = mInputSignals.length; //количество синапсов подходящих к каждому нейрону текущего слоя
-
-        mCountNeurons = count;
-
-        mNeurons = new Neuron[mCountNeurons];
-        for (int i = 0; i < mCountNeurons; i++) { //присоединяем к каждому нейрону в данном слое синапсы с предыдущего слоя
-            Synapse[] synapses = new Synapse[count];
-
-            for (int j = 0; j < count; j++) {
-                synapses[j] = new Synapse(mInputSignals[i], (float) Math.random() * 2 - 1); //TODO: доделать заполнение матрицы весов
-//                synapses[j] = new Synapse(mInputSignals[i], 1.0F); //TODO: доделать заполнение матрицы весов
-            }
-
-            mNeurons[i] = new Neuron(synapses);
-        }
-    }
-
-    public Layer(Float[] inputSignals, int countOutput) {
-        mInputSignals = inputSignals;
-        int count = mInputSignals.length; //количество синапсов подходящих к каждому нейрону текущего слоя
-
-        mCountNeurons = countOutput;
-        //создаём массив нейронов в слое
-        mNeurons = new Neuron[mCountNeurons];
-        for (int i = 0; i < mCountNeurons; i++) { //присоединяем к каждому нейрону в данном слое синапсы с предыдущего слоя
-            Synapse[] synapses = new Synapse[count];
-            for (int j = 0; j < count; j++) {
-                synapses[j] = new Synapse(mInputSignals[i], (float) Math.random() * 2 - 1); //TODO: доделать заполнение матрицы весов
-            }
-            mNeurons[i] = new Neuron(synapses);
-        }
-    }
+//    //первый запуск
+//    public Layer(Float[] inputSignals) {
+//        mInputSignals = inputSignals;
+//        int count = mInputSignals.length; //количество синапсов подходящих к каждому нейрону текущего слоя
+//
+//        mCountNeurons = count;
+//
+//        mNeurons = new Neuron[mCountNeurons];
+//        for (int i = 0; i < mCountNeurons; i++) { //присоединяем к каждому нейрону в данном слое синапсы с предыдущего слоя
+//            Synapse[] synapses = new Synapse[count];
+//
+//            for (int j = 0; j < count; j++) {
+//                synapses[j] = new Synapse(mInputSignals[i], (float) Math.random() * 2 - 1); //TODO: доделать заполнение матрицы весов
+////                synapses[j] = new Synapse(mInputSignals[i], 1.0F); //TODO: доделать заполнение матрицы весов
+//            }
+//
+//            mNeurons[i] = new Neuron(synapses);
+//        }
+//    }
+//
+//    public Layer(Float[] inputSignals, int countOutput) {
+//        mInputSignals = inputSignals;
+//        int count = mInputSignals.length; //количество синапсов подходящих к каждому нейрону текущего слоя
+//
+//        mCountNeurons = countOutput;
+//        //создаём массив нейронов в слое
+//        mNeurons = new Neuron[mCountNeurons];
+//        for (int i = 0; i < mCountNeurons; i++) { //присоединяем к каждому нейрону в данном слое синапсы с предыдущего слоя
+//            Synapse[] synapses = new Synapse[count];
+//            for (int j = 0; j < count; j++) {
+//                synapses[j] = new Synapse(mInputSignals[i], (float) Math.random() * 2 - 1); //TODO: доделать заполнение матрицы весов
+//            }
+//            mNeurons[i] = new Neuron(synapses);
+//        }
+//    }
 
     public Layer(WeightMatrix weightMatrix) {
         mInputSignals = weightMatrix.getSignals();
@@ -57,8 +57,6 @@ public class Layer {
             mNeurons[i] = new Neuron(synapses);
         }
     }
-
-    //второй запуск
 
     //выходы
     public Float[] getSignals() {

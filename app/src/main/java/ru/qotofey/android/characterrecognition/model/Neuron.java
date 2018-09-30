@@ -1,12 +1,10 @@
 package ru.qotofey.android.characterrecognition.model;
 
 
-public class Neuron {
+import ru.qotofey.android.characterrecognition.app.manager.ActivationFunctions;
+import ru.qotofey.android.characterrecognition.app.manager.Constants;
 
-    private static final Float A1 = 1.0F;
-    private static final Float A2 = -1.0F;
-    private static final Float ALPHA = .0F;
-    private static final Float T = .0F;
+public class Neuron {
 
     private Synapse[] mInputSynapses;
 
@@ -19,14 +17,13 @@ public class Neuron {
         for (int i = 0; i < mInputSynapses.length; i++) {
             sum += (mInputSynapses[i].getResult());
         }
-        return bipolar(T + sum);
+        return f(Constants.T + sum);
     }
 
-    private Float bipolar(Float x) {
-        if (x >= ALPHA) {
-            return A1;
-        }
-        return A2;
+    private Float f(Float x) {
+        return ActivationFunctions.bipolar(x);
     }
+
+
 
 }

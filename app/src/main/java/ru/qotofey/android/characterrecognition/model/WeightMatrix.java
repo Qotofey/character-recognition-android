@@ -1,7 +1,5 @@
 package ru.qotofey.android.characterrecognition.model;
 
-import android.util.Log;
-
 public class WeightMatrix {
 
     private Float[] mSignals;
@@ -12,13 +10,17 @@ public class WeightMatrix {
         mSignals = inputSignals;
         mCountNeurons = countNeurons;
         mWeightMatrix = new Float[mSignals.length][countNeurons];
-        Log.i("Weight Matrix", "Weight Matrix");
         for (int i = 0; i < mWeightMatrix.length; i++) {
             for (int j = 0; j < mWeightMatrix[i].length; j++) {
                 mWeightMatrix[i][j] = (float) Math.random() * 2.0F - 1.0F;
-                Log.e("weight[" + i + "][" + j + "] = ", "" + mWeightMatrix[i][j]);
             }
         }
+    }
+
+    public WeightMatrix(Float[] signals, Integer countNeurons, Float[][] weightMatrix) {
+        mSignals = signals;
+        mCountNeurons = countNeurons;
+        mWeightMatrix = weightMatrix;
     }
 
     public WeightMatrix(Float[] inputSignals) {

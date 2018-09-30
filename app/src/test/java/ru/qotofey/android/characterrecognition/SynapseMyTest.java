@@ -11,7 +11,7 @@ import ru.qotofey.android.characterrecognition.model.Synapse;
 import static junit.framework.TestCase.assertEquals;
 
 @RunWith(JUnit4.class)
-public class SynapseTest {
+public class SynapseMyTest {
 
     private Synapse mSynapse_0;
     private Synapse mSynapse_1;

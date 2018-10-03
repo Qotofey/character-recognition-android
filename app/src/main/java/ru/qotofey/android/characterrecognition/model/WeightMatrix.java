@@ -2,33 +2,33 @@ package ru.qotofey.android.characterrecognition.model;
 
 public class WeightMatrix {
 
-    private Float[] mSignals;
+    private Double[] mSignals;
     private Integer mCountNeurons;
-    private Float[][] mWeightMatrix;
+    private Double[][] mWeightMatrix;
 
-    public WeightMatrix(Float[] inputSignals, int countNeurons) {
+    public WeightMatrix(Double[] inputSignals, int countNeurons) {
         mSignals = inputSignals;
         mCountNeurons = countNeurons;
-        mWeightMatrix = new Float[mSignals.length][countNeurons];
+        mWeightMatrix = new Double[mSignals.length][countNeurons];
         for (int i = 0; i < mWeightMatrix.length; i++) {
             for (int j = 0; j < mWeightMatrix[i].length; j++) {
-//                mWeightMatrix[i][j] = (float) Math.random() * 2.0F - 1.0F;
-                mWeightMatrix[i][j] = 1.0F;
+//                mWeightMatrix[i][j] = (float) Math.random() * 2.0 - 1.0;
+                mWeightMatrix[i][j] = 1.0;
             }
         }
     }
 
-    public WeightMatrix(Float[] signals, Integer countNeurons, Float[][] weightMatrix) {
+    public WeightMatrix(Double[] signals, Integer countNeurons, Double[][] weightMatrix) {
         mSignals = signals;
         mCountNeurons = countNeurons;
         mWeightMatrix = weightMatrix;
     }
 
-    public WeightMatrix(Float[] inputSignals) {
+    public WeightMatrix(Double[] inputSignals) {
         this(inputSignals, inputSignals.length);
     }
 
-    public Float[] getSignals() {
+    public Double[] getSignals() {
         return mSignals;
     }
 
@@ -36,7 +36,7 @@ public class WeightMatrix {
         return mCountNeurons;
     }
 
-    public Float[][] get() {
+    public Double[][] get() {
         return mWeightMatrix;
     }
 }

@@ -18,12 +18,12 @@ public class SynapseTest {
 
     @Before
     public void setUp() throws Exception {
-        mSynapse = new Synapse(1.3F, -0.0001F);
+        mSynapse = new Synapse(1.3, -0.0001);
     }
 
     @Test
     public void getResult() {
-        assertEquals(-0.00013F, mSynapse.getResult(), 0.00000001F);
+        assertEquals(-0.00013, mSynapse.getResult(), 0.00000001); //произведение сигнала и синаптического веса
     }
 
     @After

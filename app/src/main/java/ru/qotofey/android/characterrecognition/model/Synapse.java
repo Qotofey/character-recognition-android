@@ -2,15 +2,15 @@ package ru.qotofey.android.characterrecognition.model;
 
 public class Synapse {
 
-    private Float mSignal;
-    private Float mWeight;
+    private Double mSignal;
+    private Double mWeight;
 
-    public Synapse(Float signal, Float weight) {
+    public Synapse(Double signal, Double weight) {
         mSignal = signal;
         mWeight = weight;
     }
 
-    public Float getResult() {
+    public Double getResult() {
         return mSignal * mWeight;
     }
 

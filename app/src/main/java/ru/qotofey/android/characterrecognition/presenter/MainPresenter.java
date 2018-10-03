@@ -21,17 +21,14 @@ public class MainPresenter {
     }
 
     public void init() {
-        Float[] set = new Float[] {
-                1.0F, 1.0F, 0.0F,
-//                1.0F, 1.0F, 0.0F,
-//                1.0F, 1.0F, 0.0F,
-//                1.0F, 1.0F, 0.0F,
-//                1.0F, 1.0F, 0.0F,
+        Double[] set = new Double[] {
+                1.0, 1.0, 0.0,
+
         };
-        Float[] result = new Float[] {
-                0.0F, 0.0F, 1.0F,
-//                -1.0F, 1.0F, -1.0F, -1.0F, -1.0F, -1.0F, -1.0F, -1.0F, -1.0F, -1.0F,
+        Double[] result = new Double[] {
+                -1.0, 1.0, -1.0
         };
+
         mPerceptron.train(set, result);
     }
 }

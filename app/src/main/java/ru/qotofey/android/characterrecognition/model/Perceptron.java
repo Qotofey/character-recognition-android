@@ -5,8 +5,8 @@ import ru.qotofey.android.characterrecognition.app.manager.Constants;
 
 public class Perceptron {
 
-    private Float[] mInputSignals;
-    private Float[] mExpectedResults;
+    private Double[] mInputSignals;
+    private Double[] mExpectedResults;
 
 
     private WeightMatrix[] mWeightMatrices;
@@ -14,8 +14,6 @@ public class Perceptron {
 
     private int mCountLayers;
     private int mCountOutputs;
-
-    private final Float H = 0.5F;
 
     /**
      * ВНИМАНИЕ!!! НИКОГДА НЕ ИСПОЛЬЗУЙТЕ ЭТОТ КОНСТРУКТОР В ПРОДАКШЕНЕ, ОН СОЗДАЛ ИСКЛЮЧИТЕЛЬНО
@@ -26,7 +24,7 @@ public class Perceptron {
      * матрицы синаптический весов.
      * Второе требование - параметр countLayers доджен быть больше или равен двум.
      */
-    public Perceptron(Float[] inputSignals, int countLayers, int countOutputs) {
+    public Perceptron(Double[] inputSignals, int countLayers, int countOutputs) {
         mCountLayers = countLayers;
         mCountOutputs = countOutputs;
 
@@ -53,7 +51,7 @@ public class Perceptron {
         mCountLayers = countLayers;
     }
 
-    public void train(Float[] set, Float[] results) {
+    public void train(Double[] set, Double[] results) {
         mInputSignals = set;
 
         mExpectedResults = results;
@@ -83,24 +81,20 @@ public class Perceptron {
 
     }
 
-    public void learn() {
-
-    }
-
-    public Float[] put(Float[] inputSignals) {
+    public Double[] put(Double[] inputSignals) {
 
 
         return null;
     }
 
-    public Float[] getOutput() {
+    public Double[] getOutput() {
         return mLayers[mLayers.length - 1].getSignals();
     }
 
     private void changeWeightMatrix() {
         //проверяем, следует ли изменить веса
-        Float errorSum = 0.0F;
-        do {
+        Double errorSum = 0.0;
+//        do {
 
             errorSum = this.getErrorSum();
 //            Log.e("error: ", "" + errorSum);
@@ -110,12 +104,12 @@ public class Perceptron {
                     //нейроны из одного слоя
                     for (int i = 0; i < mInputSignals.length; i++) {
                         //теперь исправляем веса для одного нейрона
-                        Float[] errors = new Float[getOutput().length];
+                        Double[] errors = new Double[getOutput().length];
                         for (int j = 0; j < getOutput().length; j++) {
                             //находим производную нашей ступенчатой функции
-                            Float s = 0.0F;
+                            Double s = 0.0;
                             for (int k = 0; k < mInputSignals.length; k++) {
-                                s += mWeightMatrices[1].get()[i][j] * Float.MAX_VALUE;
+                                s += mWeightMatrices[1].get()[i][j] * Double.MAX_VALUE;
                             }
                             errors[j] = 2 * (getOutput()[j] - mExpectedResults[j]) * ActivationFunctions.derivativeBipolar(s);
                             mWeightMatrices[1].get()[i][j] -= Constants.H * errors[j]; //изменяем синаптический вес
@@ -124,17 +118,63 @@ public class Perceptron {
 //                }
 
             }
-        } while (errorSum != 0.0F);
+//        } while (errorSum != 0.0F);
     }
 
-    public Float getErrorSum() {
-        Float errorSum = 0.0F;
+    private Double getErrorSum() {
+        Double errorSum = 0.0;
         for (int i = 0; i < getOutput().length; i++) {
             errorSum += (getOutput()[i] - mExpectedResults[i]) * (getOutput()[i] - mExpectedResults[i]);
         }
         return errorSum;
     }
 
+//    public Float sum
 //    public
+
+    //обучение
+    public void learn() {
+        if (checkForErrors()) {
+            //ошибка есть, сеть нужно обучить
+
+        }
+    }
+
+    public void foreachAllLayer() {
+
+
+
+    }
+
+    public void foreachAllNeurons(Layer layer) {
+        Neuron[] neurons = layer.getNeurons();
+        Double[] error = new Double[neurons.length];
+
+//        System.out.println("Количество нейронов: " + neurons.length);
+//        System.out.println("Количество строк: " + layer.getWeightMatrix().length);
+//        System.out.println("Количество элементов: " + layer.getWeightMatrix()[0].length);
+        System.out.println("Ошибка: " + getErrorSum());
+
+        for (int i = 0; i < neurons.length; i++) {
+            //для каждого нейрона последнего слоя
+            error[i] = 2 * (neurons[i].getSignal() - mExpectedResults[i]) * neurons[i].getDerivativeSignal();
+//            System.out.println("error[" + i + "]: " + error[i]);
+            for (int j = 0; j < layer.getWeightMatrix().length; j++) { //меняем веса синапсов подходящих к одному нейрону
+//                System.out.print("w[" + j + ", " + i + "]: " + layer.getWeightMatrix()[j][i]);
+                layer.getWeightMatrix()[j][i] -= Constants.H * error[i];
+//                System.out.println(" | w[" + j + ", " + i + "]: " + layer.getWeightMatrix()[j][i]);
+            }
+
+        }
+    }
+
+    //проверка ошибки
+    public Boolean checkForErrors() {
+        return getErrorSum() != 0.0;
+    }
+
+    public Layer getLastLayer() {
+        return mLayers[1];
+    }
 
 }

@@ -12,18 +12,29 @@ public class Neuron {
         mInputSynapses = inputSynapses;
     }
 
-    public Float getSignal() {
-        Float sum = 0.0F;
+    public Double getSignal() {
+        Double sum = 0.0;
         for (int i = 0; i < mInputSynapses.length; i++) {
             sum += (mInputSynapses[i].getResult());
         }
         return f(Constants.T + sum);
     }
 
-    private Float f(Float x) {
+    public Double getDerivativeSignal() {
+        Double sum = 0.0;
+        for (int i = 0; i < mInputSynapses.length; i++) {
+            sum += (mInputSynapses[i].getResult());
+        }
+        return derivativeF(sum);
+    }
+
+    private Double f(Double x) {
         return ActivationFunctions.bipolar(x);
     }
 
+    private Double derivativeF(Double x) {
+        return ActivationFunctions.derivativeBipolar(x);
+    }
 
 
 }

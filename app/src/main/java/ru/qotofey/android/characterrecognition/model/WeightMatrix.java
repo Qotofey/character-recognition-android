@@ -12,7 +12,8 @@ public class WeightMatrix {
         mWeightMatrix = new Float[mSignals.length][countNeurons];
         for (int i = 0; i < mWeightMatrix.length; i++) {
             for (int j = 0; j < mWeightMatrix[i].length; j++) {
-                mWeightMatrix[i][j] = (float) Math.random() * 2.0F - 1.0F;
+//                mWeightMatrix[i][j] = (float) Math.random() * 2.0F - 1.0F;
+                mWeightMatrix[i][j] = 1.0F;
             }
         }
     }

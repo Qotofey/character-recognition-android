@@ -22,6 +22,7 @@ public class PerceptronTest {
                         1.0F, 1.0F, 0.0F,
                 },
                 new Float[] {
+//                        .0F, 1.0F, .0F, .0F, .0F, .0F, .0F, .0F, .0F, .0F,
                         -1.0F, 1.0F, -1.0F, -1.0F, -1.0F, -1.0F, -1.0F, -1.0F, -1.0F, -1.0F,
                 }
         );
@@ -32,6 +33,7 @@ public class PerceptronTest {
         mPerceptron = null;
     }
 
+//    @Ignore
     @Test(timeout = 10)
     public void train() {
         mPerceptron.train(
@@ -43,12 +45,14 @@ public class PerceptronTest {
                         1.0F, 1.0F, 0.0F,
                 },
                 new Float[] {
+//                        .0F, 1.0F, .0F, .0F, .0F, .0F, .0F, .0F, .0F, .0F,
                         -1.0F, 1.0F, -1.0F, -1.0F, -1.0F, -1.0F, -1.0F, -1.0F, -1.0F, -1.0F,
                 }
         );
 
     }
 
+//    @Ignore
     @Test
     public void getOutputs() {
         int count = mPerceptron.getOutput().length;
@@ -57,6 +61,7 @@ public class PerceptronTest {
         }
     }
 
+//    @Ignore
     @Test
     public void put() {
         

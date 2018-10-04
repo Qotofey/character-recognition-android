@@ -2,9 +2,11 @@ package ru.qotofey.android.characterrecognition.model;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 public class PerceptronTest {
 
@@ -16,14 +18,17 @@ public class PerceptronTest {
         mPerceptron = new Perceptron(2);
         mPerceptron.train(
                 new Double[] {
-                        1.0, 1.0, 0.0,
-                        1.0, 1.0, 0.0,
-                        1.0, 1.0, 0.0,
-                        1.0, 1.0, 0.0,
-                        1.0, 1.0, 0.0,
+//                        1.0,
+                        1.0, 0.0,
+//                        1.0, 1.0, 0.0,
+//                        1.0, 1.0, 0.0,
+//                        1.0, 1.0, 0.0,
+//                        1.0, 1.0, 0.0,
                 },
                 new Double[] {
-                        -1.0, 1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0,
+                        .0, 1.0,
+//                        .0,
+//                        0.0, .0, .0, .0, .0, .0, .0,
                 }
         );
     }
@@ -34,73 +39,37 @@ public class PerceptronTest {
     }
 
     @Test
-    public void foreachAllNeurons() {
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
+    public void foreachAllLayers() {
+        mPerceptron.foreachAllLayers();
 
     }
 
+    @Test
+    public void foreachAllNeurons() {
+        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
+//        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
+    }
+
+    @Test
+    public void getErrorSum() {
+        Double output = mPerceptron.getErrorSum();
+        assertEquals(0.834, output, 0.001); //результат веса
+    }
+
+    @Ignore
     @Test(timeout = 10)
     public void train() {
         mPerceptron.train(
                 new Double[] {
                         1.0, 1.0, 0.0,
-                        1.0, 1.0, 0.0,
-                        1.0, 1.0, 0.0,
-                        1.0, 1.0, 0.0,
-                        1.0, 1.0, 0.0,
+//                        1.0, 1.0, 0.0,
+//                        1.0, 1.0, 0.0,
+//                        1.0, 1.0, 0.0,
+//                        1.0, 1.0, 0.0,
                 },
                 new Double[] {
-                        -1.0, 1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0,
+                        -1.0, 1.0, -1.0,
+//                        -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0,
                 }
         );
 
@@ -109,9 +78,9 @@ public class PerceptronTest {
 //    @Ignore
     @Test
     public void getOutputs() {
-        int count = mPerceptron.getOutput().length;
+        int count = mPerceptron.getOutputSignals().length;
         for (int i = 0; i < count; i++) {
-            assertTrue(mPerceptron.getOutput()[i] < 1.0 && mPerceptron.getOutput()[i] > -1.0);
+            assertTrue(mPerceptron.getOutputSignals()[i] < 1.0 && mPerceptron.getOutputSignals()[i] > -1.0);
         }
     }
 

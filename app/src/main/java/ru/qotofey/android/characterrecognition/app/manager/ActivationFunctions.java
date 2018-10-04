@@ -9,7 +9,8 @@ public class ActivationFunctions {
 
     //производная биполярной активационной функции
     public static Double derivativeBipolar(Double x) {
-        return 1.0 / (Math.cosh(x / Constants.ALPHA) * (Math.cosh(x / Constants.ALPHA)));
+        Double value = Math.cosh(x / Constants.ALPHA);
+        return 1.0 / (value * value);
     }
 
     //сигмоидальная активационная функция

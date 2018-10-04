@@ -1,62 +1,120 @@
 package ru.qotofey.android.characterrecognition.app.manager;
 
-import org.junit.Ignore;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.Timeout;
 
 import static org.junit.Assert.assertEquals;
 
 public class ActivationFunctionsTest {
 
-    @Rule
-    public Timeout timeout = new Timeout(10);
-
-    @Ignore
     @Test
     public void bipolar() {
         //первый тест
-        Double input = -0.00001;
+        Double input = 1.0;
         Double output;
-        Double expected = -1.0;
-        Double delta = 0.1;
+        Double expected = 0.762;
+        Double delta = 0.001;
 
         ActivationFunctions activationFunctions = new ActivationFunctions();
         output = activationFunctions.bipolar(input);
 
-        assertEquals(expected, output);
+        assertEquals(expected, output, delta);
 
         //второй тест
-        input = 0.00001;
-        expected = 1.0;
+        input = 1.52;
+        expected = 0.908;
+        delta = 0.001;
 
         output = activationFunctions.bipolar(input);
 
-        assertEquals(expected, output);
-
-        //третий тест
-        input = 0.0;
-        expected = 1.0;
-
-        output = activationFunctions.bipolar(input);
-
-        assertEquals(expected, output);
-
-        //пятый тест
-        input = 999999.999999;
-        expected = 1.0;
-
-        output = activationFunctions.bipolar(input);
-
-        assertEquals(expected, output);
-
-        //шестой товар
-        input = -999999.999999;
-        expected = -1.0;
-
-        output = activationFunctions.bipolar(input);
-
-        assertEquals(expected, output);
+        assertEquals(expected, output, delta);
     }
 
+    @Test
+    public void derivativeBipolar() {
+        //первый тест
+        Double input =  1.52;
+        Double output;
+        Double expected = 0.174;
+        Double delta = 0.001;
+
+        ActivationFunctions activationFunctions = new ActivationFunctions();
+        output = activationFunctions.derivativeBipolar(input);
+
+        assertEquals(expected, output, delta);
+
+        //второй тест
+        input = 1.0;
+        expected = 0.419;
+
+        output = activationFunctions.derivativeBipolar(input);
+
+        assertEquals(expected, output, delta);
+    }
+
+    @Test
+    public void errors() {
+        Double[][][] w = new Double[2][2][2];
+        w[0][0][0] = 1.0;
+        w[0][0][1] = 1.0;
+        w[0][1][0] = 1.0;
+        w[0][1][1] = 1.0;
+
+        w[1][0][0] = 1.0;
+        w[1][0][1] = 1.0;
+        w[1][1][0] = 1.0;
+        w[1][1][1] = 1.0;
+
+        Double output;
+        Double expected;
+
+        Double delta = 0.001;
+
+        /*
+         * Первая итерация
+         */
+
+        //общая ошибка
+        expected = 0.836;
+        output = (0.91 - 0.0) * (0.91 - 0.0) + (0.91 - 1.0) * (0.91 - 1.0);
+        assertEquals(expected, output, delta); //результат функции ошибки
+
+        //функция ошибки на дендритах нейрона y1
+        expected = 0.317;
+        output = 2 * (0.91 - 0.0) * ActivationFunctions.derivativeBipolar(1.52);
+        assertEquals(expected, output, delta);
+        w[0][0][0] = w[0][0][0] - Constants.H * output;
+        w[0][0][1] = w[0][0][1] - Constants.H * output;
+        assertEquals(0.841, w[0][0][0], delta); //результат веса
+        assertEquals(0.841, w[0][0][1], delta); //результат веса
+        //функция ошибки на дендритах нейрона y2
+        expected = -0.031;
+        output = 2 * (0.91 - 1.0) * ActivationFunctions.derivativeBipolar(1.52);
+        assertEquals(expected, output, delta);
+        w[0][1][0] = w[0][1][0] - Constants.H * output;
+        w[0][1][1] = w[0][1][1] - Constants.H * output;
+        assertEquals(1.015, w[0][1][0], delta); //результат веса
+        assertEquals(1.015, w[0][1][1], delta); //результат веса
+
+        //функция ошибки на дендритах нейрона x1
+        expected = 0.266;
+        output = 2 * 0.317 * ActivationFunctions.derivativeBipolar(1.0);
+        assertEquals(expected, output, delta);
+        w[1][0][0] = w[1][0][0] - Constants.H * output;
+        w[1][0][1] = w[1][0][1] - Constants.H * output;
+        assertEquals(0.866, w[1][0][0], delta); //результат веса
+        assertEquals(0.866, w[1][0][1], delta); //результат веса
+        //функция ошибки на дендритах нейрона x2
+        expected = -0.026;
+        output = 2 * (-0.031) * ActivationFunctions.derivativeBipolar(1.0);
+        assertEquals(expected, output, delta);
+        w[1][1][0] = w[1][1][0] - Constants.H * output;
+        w[1][1][1] = w[1][1][1] - Constants.H * output;
+        assertEquals(1.013, w[1][1][0], delta); //результат веса
+        assertEquals(1.013, w[1][1][1], delta); //результат веса
+
+        /*
+         * Вторая итерация
+         */
+
+    }
 }

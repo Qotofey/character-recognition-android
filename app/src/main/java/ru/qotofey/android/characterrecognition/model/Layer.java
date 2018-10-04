@@ -20,7 +20,7 @@ public class Layer {
         for (int i = 0; i < mCountNeurons; i++) { //присоединяем к каждому нейрону в данном слое синапсы с предыдущего слоя
             Synapse[] synapses = new Synapse[count];
             for (int j = 0; j < count; j++) {
-                synapses[j] = new Synapse(mInputSignals[i], weightMatrix.get()[j][i]);
+                synapses[j] = new Synapse(mInputSignals[j], weightMatrix.get()[j][i]);
             }
             mNeurons[i] = new Neuron(synapses);
         }

@@ -15,8 +15,10 @@ public class Neuron {
     public Double getSignal() {
         Double sum = 0.0;
         for (int i = 0; i < mInputSynapses.length; i++) {
-            sum += (mInputSynapses[i].getResult());
+//            System.out.println("Синапс[" + i + "] = " + mInputSynapses[i].getResult());
+            sum += mInputSynapses[i].getResult();
         }
+//        System.out.println("Сумма = " + sum);
         return f(Constants.T + sum);
     }
 
@@ -25,7 +27,7 @@ public class Neuron {
         for (int i = 0; i < mInputSynapses.length; i++) {
             sum += (mInputSynapses[i].getResult());
         }
-        return derivativeF(sum);
+        return derivativeF(Constants.T + sum);
     }
 
     private Double f(Double x) {
@@ -36,5 +38,7 @@ public class Neuron {
         return ActivationFunctions.derivativeBipolar(x);
     }
 
-
+    public Synapse[] getInputSynapses() {
+        return mInputSynapses;
+    }
 }

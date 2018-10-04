@@ -14,19 +14,15 @@ public class Synapse {
         return mSignal * mWeight;
     }
 
-//    public Float getSignal() {
-//        return mSignal;
-//    }
-//
-//    public void setSignal(Float signal) {
+//    public void setSignal(Double signal) {
 //        mSignal = signal;
 //    }
-//
-//    public Float getWeight() {
-//        return mWeight;
-//    }
-//
-//    public void setWeight(Float weight) {
-//        mWeight = weight;
-//    }
+
+    public void setWeight(Double weight) {
+        mWeight = weight;
+    }
+
+    public Double getWeight() {
+        return mWeight;
+    }
 }

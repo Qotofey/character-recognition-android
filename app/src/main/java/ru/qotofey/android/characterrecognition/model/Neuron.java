@@ -15,10 +15,8 @@ public class Neuron {
     public Double getSignal() {
         Double sum = 0.0;
         for (int i = 0; i < mInputSynapses.length; i++) {
-//            System.out.println("Синапс[" + i + "] = " + mInputSynapses[i].getResult());
             sum += mInputSynapses[i].getResult();
         }
-//        System.out.println("Сумма = " + sum);
         return f(Constants.T + sum);
     }
 

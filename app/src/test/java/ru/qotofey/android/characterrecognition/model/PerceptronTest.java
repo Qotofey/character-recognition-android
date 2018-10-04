@@ -2,7 +2,6 @@ package ru.qotofey.android.characterrecognition.model;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertTrue;
@@ -14,7 +13,6 @@ public class PerceptronTest {
 
     @Before
     public void setUp() throws Exception {
-
         mPerceptron = new Perceptron(2);
         mPerceptron.train(
                 new Double[] {
@@ -42,6 +40,15 @@ public class PerceptronTest {
     public void foreachAllLayers() {
         mPerceptron.foreachAllLayers();
 
+        Double[] signals = mPerceptron.put(
+                new Double[] {
+                        1.0, 0.0,
+                }
+        );
+
+        for (int i = 0; i < signals.length; i++) {
+            System.out.println(signals[i]);
+        }
     }
 
     @Test
@@ -56,26 +63,11 @@ public class PerceptronTest {
         assertEquals(0.834, output, 0.001); //результат веса
     }
 
-    @Ignore
     @Test(timeout = 10)
     public void train() {
-        mPerceptron.train(
-                new Double[] {
-                        1.0, 1.0, 0.0,
-//                        1.0, 1.0, 0.0,
-//                        1.0, 1.0, 0.0,
-//                        1.0, 1.0, 0.0,
-//                        1.0, 1.0, 0.0,
-                },
-                new Double[] {
-                        -1.0, 1.0, -1.0,
-//                        -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0,
-                }
-        );
 
     }
 
-//    @Ignore
     @Test
     public void getOutputs() {
         int count = mPerceptron.getOutputSignals().length;
@@ -84,9 +76,26 @@ public class PerceptronTest {
         }
     }
 
-//    @Ignore
     @Test
     public void put() {
-        
+        mPerceptron = new Perceptron(2);
+        mPerceptron.train(
+                new Double[] {
+                        1.0, 0.0,
+                },
+                new Double[] {
+                        0.0, 1.0,
+                }
+        );
+        mPerceptron.foreachAllLayers();
+        Double[] signals = mPerceptron.put(
+                new Double[] {
+                        1.0, 0.0,
+                }
+        );
+
+        for (int i = 0; i < signals.length; i++) {
+            System.out.println(signals[i]);
+        }
     }
 }

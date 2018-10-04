@@ -14,9 +14,9 @@ public class Synapse {
         return mSignal * mWeight;
     }
 
-//    public void setSignal(Double signal) {
-//        mSignal = signal;
-//    }
+    public void setSignal(Double signal) {
+        mSignal = signal;
+    }
 
     public void setWeight(Double weight) {
         mWeight = weight;

@@ -27,6 +27,46 @@ public class ActivationFunctionsTest {
         output = activationFunctions.bipolar(input);
 
         assertEquals(expected, output, delta);
+
+        /*
+         *  вторая итерация
+         */
+
+        //первый тест
+        input = 0.866;
+        expected = 0.699;
+        delta = 0.001;
+
+        output = activationFunctions.bipolar(input);
+
+        assertEquals(expected, output, delta);
+
+        //первый тест
+        input = 1.015;
+        expected = 0.768;
+        delta = 0.001;
+
+        output = activationFunctions.bipolar(input);
+
+        assertEquals(expected, output, delta);
+
+        //третий тест
+        input = (0.699 + 0.768) * 0.841;
+        expected = 0.844;
+        delta = 0.001;
+
+        output = activationFunctions.bipolar(input);
+
+        assertEquals(expected, output, delta);
+
+        //четвёртый тест
+        input = (0.699 + 0.768) * 1.015;
+        expected = 0.903;
+        delta = 0.001;
+
+        output = activationFunctions.bipolar(input);
+
+        assertEquals(expected, output, delta);
     }
 
     @Test
@@ -86,6 +126,8 @@ public class ActivationFunctionsTest {
         w[0][0][1] = w[0][0][1] - Constants.H * output;
         assertEquals(0.841, w[0][0][0], delta); //результат веса
         assertEquals(0.841, w[0][0][1], delta); //результат веса
+
+        assertEquals(0.841, w[0][0][0], delta); //результат веса
         //функция ошибки на дендритах нейрона y2
         expected = -0.031;
         output = 2 * (0.91 - 1.0) * ActivationFunctions.derivativeBipolar(1.52);
@@ -112,9 +154,12 @@ public class ActivationFunctionsTest {
         assertEquals(1.013, w[1][1][0], delta); //результат веса
         assertEquals(1.013, w[1][1][1], delta); //результат веса
 
+
+
         /*
          * Вторая итерация
          */
+
 
     }
 }

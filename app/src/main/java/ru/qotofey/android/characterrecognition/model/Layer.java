@@ -30,6 +30,15 @@ public class Layer {
         return mNeurons;
     }
 
+    //входы
+    public void setInputSignals(Double[] inputSignals) {
+        for (int i = 0; i < mNeurons.length; i++) {
+            for (int j = 0; j < mNeurons[i].getInputSynapses().length; j++) {
+                mNeurons[i].getInputSynapses()[j].setSignal(inputSignals[j]);
+            }
+        }
+    }
+
     //выходы
     public Double[] getSignals() {
         Double[] signals = new Double[mCountNeurons];

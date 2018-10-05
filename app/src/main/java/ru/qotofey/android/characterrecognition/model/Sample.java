@@ -10,5 +10,11 @@ public class Sample {
         mResult = result;
     }
 
+    public Double[] getSet() {
+        return mSet;
+    }
 
+    public Double[] getResult() {
+        return mResult;
+    }
 }

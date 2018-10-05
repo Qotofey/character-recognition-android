@@ -1,5 +1,7 @@
 package ru.qotofey.android.characterrecognition.model;
 
+import java.util.List;
+
 import ru.qotofey.android.characterrecognition.app.manager.Constants;
 
 public class Perceptron {
@@ -7,6 +9,7 @@ public class Perceptron {
     private Double[] mInputSignals;
     private Double[] mExpectedResults;
 
+    private List<Sample> mSampleList;
 
     private WeightMatrix[] mWeightMatrices;
     private Layer[] mLayers;
@@ -23,31 +26,36 @@ public class Perceptron {
      * матрицы синаптический весов.
      * Второе требование - параметр countLayers доджен быть больше или равен двум.
      */
-    public Perceptron(Double[] inputSignals, int countLayers, int countOutputs) {
-        mCountLayers = countLayers;
-        mCountOutputs = countOutputs;
-
-        mInputSignals = inputSignals;
-        //инициализация слоёв
-        mWeightMatrices = new WeightMatrix[mCountLayers];
-        mLayers = new Layer[mCountLayers];
-
-        //первый скрытый слой
-        mWeightMatrices[0] = new WeightMatrix(mInputSignals);
-        mLayers[0] = new Layer(mWeightMatrices[0]);
-        //промежуточные скрытые слови
-        for (int i = 1; i < mCountLayers - 1; i++) {
-            mWeightMatrices[i] = new WeightMatrix(mInputSignals);
-            mLayers[i] = new Layer(mWeightMatrices[i]);
-        }
-        //последний скрытый слой
-        mWeightMatrices[mCountLayers - 1] = new WeightMatrix(mLayers[mCountLayers - 2].getSignals(), mCountOutputs);
-        mLayers[mCountLayers - 1] = new Layer(mWeightMatrices[mCountLayers - 1]);
-    }
+//    public Perceptron(Double[] inputSignals, int countLayers, int countOutputs) {
+//        mCountLayers = countLayers;
+//        mCountOutputs = countOutputs;
+//
+//        mInputSignals = inputSignals;
+//        //инициализация слоёв
+//        mWeightMatrices = new WeightMatrix[mCountLayers];
+//        mLayers = new Layer[mCountLayers];
+//
+//        //первый скрытый слой
+//        mWeightMatrices[0] = new WeightMatrix(mInputSignals);
+//        mLayers[0] = new Layer(mWeightMatrices[0]);
+//        //промежуточные скрытые слови
+//        for (int i = 1; i < mCountLayers - 1; i++) {
+//            mWeightMatrices[i] = new WeightMatrix(mInputSignals);
+//            mLayers[i] = new Layer(mWeightMatrices[i]);
+//        }
+//        //последний скрытый слой
+//        mWeightMatrices[mCountLayers - 1] = new WeightMatrix(mLayers[mCountLayers - 2].getSignals(), mCountOutputs);
+//        mLayers[mCountLayers - 1] = new Layer(mWeightMatrices[mCountLayers - 1]);
+//    }
 
     //конструктор для продакшена!
     public Perceptron(int countLayers) {
         mCountLayers = countLayers;
+        //инициализация слоёв если их нет
+        if (mWeightMatrices == null || mLayers == null) {
+            mWeightMatrices = new WeightMatrix[mCountLayers];
+            mLayers = new Layer[mCountLayers];
+        }
     }
 
     /**
@@ -62,12 +70,6 @@ public class Perceptron {
 
         mCountOutputs = results.length;
 
-        //инициализация слоёв если их нет
-        if (mWeightMatrices == null || mLayers == null) {
-            mWeightMatrices = new WeightMatrix[mCountLayers];
-            mLayers = new Layer[mCountLayers];
-        }
-
         //первый скрытый слой
         mWeightMatrices[0] = new WeightMatrix(mInputSignals);
         mLayers[0] = new Layer(mWeightMatrices[0]);
@@ -81,6 +83,26 @@ public class Perceptron {
         mLayers[mCountLayers - 1] = new Layer(mWeightMatrices[mCountLayers - 1]);
 
         //проверяем, следует ли изменить веса
+        foreachAllLayers();
+    }
+
+    public void train(List<Sample> samples) {
+        mSampleList = samples;
+        train(mSampleList.get(0).getSet(), mSampleList.get(0).getResult());
+//        for (int i = 1; i < mSampleList.size(); i++) {
+//            mInputSignals = mSampleList.get(i).getSet();
+//            mExpectedResults = mSampleList.get(i).getResult();
+//            mCountOutputs = mSampleList.get(i).getResult().length;
+//            foreachAllLayers();
+//        }
+//        do {
+//            for (int i = 0; i < mSampleList.size(); i++) {
+//                mInputSignals = mSampleList.get(i).getSet();
+//                mExpectedResults = mSampleList.get(i).getResult();
+//                mCountOutputs = mSampleList.get(i).getResult().length;
+//                foreachAllLayers();
+//            }
+//        } while (checkForErrors());
     }
 
     public Double[] put(Double[] inputSignals) {
@@ -120,40 +142,52 @@ public class Perceptron {
     }
 
     public void foreachAllLayers() {
-        do {
-            //начинаем с последнего слоя
-            for (int i = mLayers.length - 1; i >= 0; i--) {
-                System.out.println("Слой: " + i + " | нейронов: " + mLayers[i].getNeurons().length);
-                foreachAllNeurons(mLayers[i]);
-
-            }
-            System.out.println("Ошибка: " + getErrorSum());
-            System.out.println();
-        } while (checkForErrors());
+//        do {
+        //начинаем с последнего слоя
+        for (int i = mLayers.length - 1; i >= 0; i--) {
+//                System.out.println("Слой: " + i + " | нейронов: " + mLayers[i].getNeurons().length);
+            foreachAllNeurons(mLayers[i]);
+//            break;
+        }
+//            System.out.println("Ошибка: " + getErrorSum());
+//            System.out.println();
+//        } while (checkForErrors());
     }
 
-    public void foreachAllNeurons(Layer layer) {
+    public Layer foreachAllNeurons(Layer layer) {
         Neuron[] neurons = layer.getNeurons();
         Double[] error = new Double[neurons.length];
-
-        System.out.println("y1 = " + layer.getNeurons()[0].getSignal());
-        System.out.println("y2 = " + layer.getNeurons()[1].getSignal());
+//        System.out.println("y1 = " + layer.getNeurons()[0].getSignal());
+//        System.out.println("y2 = " + layer.getNeurons()[1].getSignal());
+        System.out.println("Количество нейронов в слое: " + neurons.length);
+        System.out.println("Количество синапсов к нейрону: " + layer.getNeurons()[0].getInputSynapses().length);
 
         for (int i = 0; i < neurons.length; i++) {
             //для каждого нейрона последнего слоя
             error[i] = 2 * (neurons[i].getSignal() - mExpectedResults[i]) * neurons[i].getDerivativeSignal();
             for (int j = 0; j < layer.getNeurons()[i].getInputSynapses().length; j++) { //меняем веса синапсов подходящих к одному нейрону
+                System.out.print(" | " + j);
                 Synapse synapse = layer.getNeurons()[i].getInputSynapses()[j];
                 layer.getNeurons()[i].getInputSynapses()[j].setWeight(synapse.getWeight() - Constants.H * error[i]);
             }
+            System.out.println("| *i = " + i);
         }
-
-        System.out.println("new_y1 = " + layer.getNeurons()[0].getSignal());
-        System.out.println("new_y2 = " + layer.getNeurons()[1].getSignal());
+//        System.out.println("new_y1 = " + layer.getNeurons()[0].getSignal());
+//        System.out.println("new_y2 = " + layer.getNeurons()[1].getSignal());
+        return null;
     }
+
+    private double mErrorSum = 0.0;
+    private double mPrevErrorSum = 0.0;
 
     //проверка ошибки
     public Boolean checkForErrors() {
+//        mErrorSum = getErrorSum();
+//        if (mErrorSum == mPrevErrorSum) {
+//            return false;
+//        }
+//        mPrevErrorSum = mErrorSum;
+//        return true;
         Double value = getErrorSum();
         return value > 0.001 || value < -0.001;
     }

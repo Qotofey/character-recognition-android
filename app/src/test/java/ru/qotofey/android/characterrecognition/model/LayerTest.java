@@ -9,18 +9,19 @@ import static junit.framework.TestCase.assertTrue;
 public class LayerTest {
 
     private Layer mLayer;
+    private Layer mLayer1;
 
     @Before
     public void setUp() throws Exception {
         mLayer = new Layer(new WeightMatrix(
                 new Double[] {
-                        -1.0, -1.0, 1.0,
-                        -1.0, -1.0, 1.0,
-                        -1.0, -1.0, 1.0,
-                        -1.0, -1.0, 1.0,
-                        -1.0, -1.0, 1.0,
+                        .0, .0, 1.0,
+                        .0, .0, 1.0,
+                        .0, .0, 1.0,
+                        .0, .0, 1.0,
+                        .0, .0, 1.0,
                 },
-                15));
+                10));
     }
 
     @After
@@ -30,14 +31,14 @@ public class LayerTest {
 
     @Test
     public void getSignals() {
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < mLayer.getSignals().length; i++) {
             assertTrue(mLayer.getSignals()[i] < 1.0 && mLayer.getSignals()[i] > -1.0);
         }
     }
 
     @Test
     public void getNeurons() {
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < mLayer.getSignals().length; i++) {
             assertTrue(mLayer.getNeurons()[i].getSignal() < 1.0 && mLayer.getNeurons()[i].getSignal() > -1.0);
         }
     }

@@ -4,6 +4,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 
@@ -16,17 +19,17 @@ public class PerceptronTest {
         mPerceptron = new Perceptron(2);
         mPerceptron.train(
                 new Double[] {
-//                        1.0,
+                        1.0,
                         1.0, 0.0,
-//                        1.0, 1.0, 0.0,
-//                        1.0, 1.0, 0.0,
-//                        1.0, 1.0, 0.0,
-//                        1.0, 1.0, 0.0,
+                        1.0, 1.0, 0.0,
+                        1.0, 1.0, 0.0,
+                        1.0, 1.0, 0.0,
+                        1.0, 1.0, 0.0,
                 },
                 new Double[] {
                         .0, 1.0,
-//                        .0,
-//                        0.0, .0, .0, .0, .0, .0, .0,
+                        .0,
+                        0.0, .0, .0, .0, .0, .0, .0,
                 }
         );
     }
@@ -79,23 +82,59 @@ public class PerceptronTest {
     @Test
     public void put() {
         mPerceptron = new Perceptron(2);
-        mPerceptron.train(
+
+        List<Sample> samples = new ArrayList<>();
+        samples.add(new Sample(
                 new Double[] {
-                        1.0, 0.0,
+                        .0, .0, 1.0,
+                        .0, .0, 1.0,
+                        .0, .0, 1.0,
+                        .0, .0, 1.0,
+                        .0, .0, 1.0,
                 },
                 new Double[] {
-                        0.0, 1.0,
+                        .0, 1.0, .0, .0, .0, .0, .0, .0, .0, .0,
                 }
-        );
-        mPerceptron.foreachAllLayers();
+        ));
+//        samples.add(new Sample(
+//                new Double[] {
+//                        0.0, 1.0,
+//                },
+//                new Double[] {
+//                        1.0, 0.0,
+//                }
+//        ));
+
+        mPerceptron.train(samples);
+//        mPerceptron.train(
+//                new Double[] {
+//                        1.0, 0.0,
+//                },
+//                new Double[] {
+//                        0.0, 1.0,
+//                }
+//        );
+
+
         Double[] signals = mPerceptron.put(
                 new Double[] {
-                        1.0, 0.0,
+                        1.0, 0.0, 1.0,
                 }
         );
 
         for (int i = 0; i < signals.length; i++) {
             System.out.println(signals[i]);
         }
+
+//        signals = mPerceptron.put(
+//                new Double[] {
+//                        0.0, 1.0,
+//                }
+//        );
+//
+//        for (int i = 0; i < signals.length; i++) {
+//            System.out.println(signals[i]);
+//        }
+
     }
 }

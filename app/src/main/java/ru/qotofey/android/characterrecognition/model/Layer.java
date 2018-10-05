@@ -20,7 +20,8 @@ public class Layer {
         for (int i = 0; i < mCountNeurons; i++) { //присоединяем к каждому нейрону в данном слое синапсы с предыдущего слоя
             Synapse[] synapses = new Synapse[count];
             for (int j = 0; j < count; j++) {
-                synapses[j] = new Synapse(mInputSignals[j], weightMatrix.get()[j][i]);
+                synapses[j] = new Synapse(mInputSignals[j], weightMatrix.get()[i][j]);
+//                synapses[i] = new Synapse(1.0, 1.0);
             }
             mNeurons[i] = new Neuron(synapses);
         }
@@ -46,10 +47,6 @@ public class Layer {
             signals[i] = mNeurons[i].getSignal();
         }
         return signals;
-    }
-
-    public Double[][] getWeightMatrix() {
-        return mWeightMatrix;
     }
 
 }

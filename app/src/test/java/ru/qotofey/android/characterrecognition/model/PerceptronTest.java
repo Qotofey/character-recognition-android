@@ -2,6 +2,7 @@ package ru.qotofey.android.characterrecognition.model;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -16,20 +17,17 @@ public class PerceptronTest {
 
     @Before
     public void setUp() throws Exception {
-        mPerceptron = new Perceptron(2);
+        mPerceptron = new Perceptron(3);
         mPerceptron.train(
                 new Double[] {
-                        1.0,
-                        1.0, 0.0,
+                        1.0, 1.0, 0.0,
                         1.0, 1.0, 0.0,
                         1.0, 1.0, 0.0,
                         1.0, 1.0, 0.0,
                         1.0, 1.0, 0.0,
                 },
                 new Double[] {
-                        .0, 1.0,
-                        .0,
-                        0.0, .0, .0, .0, .0, .0, .0,
+                        .0, 1.0, .0, 0.0, .0, .0, .0, .0, .0, .0,
                 }
         );
     }
@@ -43,23 +41,29 @@ public class PerceptronTest {
     public void foreachAllLayers() {
         mPerceptron.foreachAllLayers();
 
-        Double[] signals = mPerceptron.put(
-                new Double[] {
-                        1.0, 0.0,
-                }
-        );
-
-        for (int i = 0; i < signals.length; i++) {
-            System.out.println(signals[i]);
-        }
+//        Double[] signals = mPerceptron.put(
+//                new Double[] {
+//                        1.0, 0.0,
+//                }
+//        );
+//
+//        for (int i = 0; i < signals.length; i++) {
+//            System.out.println(signals[i]);
+//        }
     }
 
     @Test
     public void foreachAllNeurons() {
-        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
-//        mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
+        Double[][] e = mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
+        Double[][] ee = mPerceptron.foreachAllNeurons(mPerceptron.getSecondLayer(), e);
+//        mPerceptron.foreachAllNeurons(mPerceptron.getFirstLayer(), ee);
+
+        e = mPerceptron.foreachAllNeurons(mPerceptron.getLastLayer());
+        ee = mPerceptron.foreachAllNeurons(mPerceptron.getSecondLayer(), e);
+//        mPerceptron.foreachAllNeurons(mPerceptron.getFirstLayer(), ee);
     }
 
+    @Ignore
     @Test
     public void getErrorSum() {
         Double output = mPerceptron.getErrorSum();
@@ -118,6 +122,10 @@ public class PerceptronTest {
 
         Double[] signals = mPerceptron.put(
                 new Double[] {
+                        1.0, 0.0, 1.0,
+                        1.0, 0.0, 1.0,
+                        1.0, 0.0, 1.0,
+                        1.0, 0.0, 1.0,
                         1.0, 0.0, 1.0,
                 }
         );

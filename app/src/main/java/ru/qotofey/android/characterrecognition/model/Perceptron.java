@@ -83,7 +83,7 @@ public class Perceptron {
         mLayers[mCountLayers - 1] = new Layer(mWeightMatrices[mCountLayers - 1]);
 
         //проверяем, следует ли изменить веса
-        foreachAllLayers();
+//        foreachAllLayers();
     }
 
     public void train(List<Sample> samples) {
@@ -145,7 +145,7 @@ public class Perceptron {
 //        do {
         //начинаем с последнего слоя
         for (int i = mLayers.length - 1; i >= 0; i--) {
-//                System.out.println("Слой: " + i + " | нейронов: " + mLayers[i].getNeurons().length);
+            System.out.println("Слой: " + i + " | нейронов: " + mLayers[i].getNeurons().length);
             foreachAllNeurons(mLayers[i]);
 //            break;
         }
@@ -154,31 +154,114 @@ public class Perceptron {
 //        } while (checkForErrors());
     }
 
-    public Layer foreachAllNeurons(Layer layer) {
+    //
+    public Double[][] foreachAllNeurons(Layer layer) {
         Neuron[] neurons = layer.getNeurons();
-        Double[] error = new Double[neurons.length];
-//        System.out.println("y1 = " + layer.getNeurons()[0].getSignal());
-//        System.out.println("y2 = " + layer.getNeurons()[1].getSignal());
-        System.out.println("Количество нейронов в слое: " + neurons.length);
-        System.out.println("Количество синапсов к нейрону: " + layer.getNeurons()[0].getInputSynapses().length);
+        Double[][] errors = new Double[neurons.length][];
 
-        for (int i = 0; i < neurons.length; i++) {
-            //для каждого нейрона последнего слоя
-            error[i] = 2 * (neurons[i].getSignal() - mExpectedResults[i]) * neurons[i].getDerivativeSignal();
-            for (int j = 0; j < layer.getNeurons()[i].getInputSynapses().length; j++) { //меняем веса синапсов подходящих к одному нейрону
-                System.out.print(" | " + j);
-                Synapse synapse = layer.getNeurons()[i].getInputSynapses()[j];
-                layer.getNeurons()[i].getInputSynapses()[j].setWeight(synapse.getWeight() - Constants.H * error[i]);
+        System.out.println("Количество нейронов в слое: " + neurons.length);
+        System.out.println("Количество синапсов подходящих к нейрону: " + layer.getNeurons()[0].getInputSynapses().length);
+
+        for (int i = 0; i < neurons.length; i++) { //количество нейронов
+
+            errors[i] = new Double[neurons[i].getInputSynapses().length]; //инициализируем массивы ошибок
+
+            for (int j = 0; j < neurons[i].getInputSynapses().length; j++) { //количество синапсов
+
+                errors[i][j] = 2 * (neurons[i].getSignal() - mExpectedResults[i]) * neurons[i].getDerivativeSignal() * neurons[i].getInputSynapses()[j].getWeight(); //находим ошибку
+//                System.out.print(" | " + j);
+//                System.out.print(" | " + j + " w=" + errors[i][j]);
+                layer.getNeurons()[i].getInputSynapses()[j].setWeight(layer.getNeurons()[i].getInputSynapses()[j].getWeight() - Constants.H * errors[i][j]);
+                System.out.print(" | " + j + " w=" + (layer.getNeurons()[i].getInputSynapses()[j].getWeight()));
             }
-            System.out.println("| *i = " + i);
+            System.out.println(" | *i = " + i);
         }
-//        System.out.println("new_y1 = " + layer.getNeurons()[0].getSignal());
-//        System.out.println("new_y2 = " + layer.getNeurons()[1].getSignal());
-        return null;
+
+        return errors;
     }
 
-    private double mErrorSum = 0.0;
-    private double mPrevErrorSum = 0.0;
+    public Double[][] foreachAllNeurons(Layer layer, Double[][] e) {
+        Neuron[] neurons = layer.getNeurons();
+        Double[][] errors = new Double[neurons.length][];
+
+        System.out.println("Количество нейронов в слое: " + neurons.length);
+        System.out.println("Количество синапсов подходящих к нейрону: " + layer.getNeurons()[0].getInputSynapses().length);
+
+        for (int i = 0; i < neurons.length; i++) { //количество нейронов
+
+            errors[i] = new Double[neurons[i].getInputSynapses().length]; //инициализируем массивы ошибок
+
+            for (int j = 0; j < neurons[i].getInputSynapses().length; j++) { //количество синапсов
+                Double sum = 0.0;
+                for (int k = 0; k < e.length; k++) {
+                    sum = e[k][j];
+                }
+                errors[i][j] = sum * neurons[i].getDerivativeSignal() * neurons[j].getInputSynapses()[j].getWeight(); //находим ошибку
+                layer.getNeurons()[i].getInputSynapses()[j].setWeight(layer.getNeurons()[i].getInputSynapses()[j].getWeight() - Constants.H * errors[i][j]);
+                System.out.print(" | " + j + " w=" + (layer.getNeurons()[i].getInputSynapses()[j].getWeight()));
+            }
+            System.out.println(" | *i = " + i);
+        }
+
+
+        return errors;
+    }
+
+//        int i = 0;
+//        System.out.println("Количество нейронов в слое: " + neurons.length);
+//        System.out.println("Количество синапсов подходящих к нейрону: " + layer.getNeurons()[i].getInputSynapses().length);
+//
+//        Layer returnLayer;
+
+//        //представим, что это последний слой
+//        for (i = 0; i < neurons.length; i++) {
+//            //для каждого нейрона последнего слоя
+//
+////            //для каждого нейрона предпоследнего слоя
+////            error[i] = 2 * (neurons[i].getSignal() - mExpectedResults[i]) * neurons[i].getDerivativeSignal();
+//            for (int j = 0; j < layer.getNeurons()[i].getInputSynapses().length; j++) { //меняем веса синапсов подходящих к одному нейрону
+//                error[i] = 2 * (neurons[i].getSignal() - mExpectedResults[i]) * neurons[i].getDerivativeSignal() * neurons[i].getInputSynapses()[j].getWeight();
+//                System.out.print(" | " + j);
+//                Synapse synapse = layer.getNeurons()[i].getInputSynapses()[j];
+//                layer.getNeurons()[i].getInputSynapses()[j].setWeight(synapse.getWeight() - Constants.H * error[i]);
+//            }
+//            System.out.println(" | *i = " + i);
+//        }
+//        returnLayer = layer; //слой который мы возвращаем
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+//        for (i = 0; i < getLastLayer().getNeurons().length; i++) {
+//            //для каждого нейрона последнего слоя
+//            error[i] = 2 * (getLastLayer().getNeurons()[i].getSignal() - mExpectedResults[i]) * getLastLayer().getNeurons()[i].getDerivativeSignal();
+//            for (int j = 0; j < getLastLayer().getNeurons()[i].getInputSynapses().length; j++) {
+//                Synapse synapse = getLastLayer().getNeurons()[i].getInputSynapses()[j];
+//                getLastLayer().getNeurons()[i].getInputSynapses()[j].setWeight(synapse.getWeight() - Constants.H * error[i]);
+//            }
+//        }
+//
+//        for (i = 0; i < layer.getNeurons().length; i++) {
+////            error[i] = error[i] *
+//        }
+//        for (i = 0; i < neurons.length; i++) {
+//            //для каждого нейрона последнего слоя
+//            error[i] = 2 * (neurons[i].getSignal() - mExpectedResults[i]) * neurons[i].getDerivativeSignal();
+//            for (int j = 0; j < layer.getNeurons()[i].getInputSynapses().length; j++) { //меняем веса синапсов подходящих к одному нейрону
+//                System.out.print(" | " + j);
+//                Synapse synapse = layer.getNeurons()[i].getInputSynapses()[j];
+//                layer.getNeurons()[i].getInputSynapses()[j].setWeight(synapse.getWeight() - Constants.H * error[i]);
+//            }
+//            System.out.println("| *i = " + i);
+//        }
+
+//
+//        return returnLayer;
+//    }
+//
+//    private double mErrorSum = 0.0;
+//    private double mPrevErrorSum = 0.0;
 
     //проверка ошибки
     public Boolean checkForErrors() {
@@ -194,7 +277,15 @@ public class Perceptron {
 
     //метод для тестирования
     public Layer getLastLayer() {
+        return mLayers[2];
+    }
+
+    public Layer getSecondLayer() {
         return mLayers[1];
+    }
+
+    public Layer getFirstLayer() {
+        return mLayers[0];
     }
 
 }

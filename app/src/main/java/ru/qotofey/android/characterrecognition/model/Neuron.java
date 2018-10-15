@@ -29,11 +29,15 @@ public class Neuron {
     }
 
     private Double f(Double x) {
-        return ActivationFunctions.bipolar(x);
+        return ActivationFunctions.bipolar(x); //биполярная
+//        return ActivationFunctions.sigmoid(x); //сигмоидальная
+//        return ActivationFunctions.ReLU(x); //ReLU
     }
 
     private Double derivativeF(Double x) {
-        return ActivationFunctions.derivativeBipolar(x);
+        return ActivationFunctions.derivativeBipolar(x); //биполярная
+//        return ActivationFunctions.derivativeSigmoid(x); //сигмоидальная
+//        return ActivationFunctions.derivativeReLU(x); //ReLU
     }
 
     public Synapse[] getInputSynapses() {

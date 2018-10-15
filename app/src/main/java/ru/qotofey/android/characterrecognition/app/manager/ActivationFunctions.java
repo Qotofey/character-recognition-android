@@ -20,7 +20,7 @@ public class ActivationFunctions {
 
     //производная сигмоидальной активационной функции
     public static Double derivativeSigmoid(Double x) {
-        return 0.0; //TODO: вычислить производную сигмоидальной функции
+        return -Constants.ALPHA * sigmoid(x) * (1 + sigmoid(x));
     }
 
     //активационная функция ReLU

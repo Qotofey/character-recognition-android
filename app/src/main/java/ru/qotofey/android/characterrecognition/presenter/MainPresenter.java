@@ -29,6 +29,6 @@ public class MainPresenter {
                 -1.0, 1.0, -1.0
         };
 
-        mPerceptron.train(set, result);
+//        mPerceptron.train(set, result);
     }
 }

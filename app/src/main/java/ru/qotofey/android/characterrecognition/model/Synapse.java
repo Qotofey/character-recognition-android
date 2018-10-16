@@ -25,4 +25,8 @@ public class Synapse {
     public Double getWeight() {
         return mWeight;
     }
+
+    public Double getSignal() {
+        return mSignal;
+    }
 }

@@ -17,11 +17,11 @@ public class PerceptronTest {
         List<Sample> samples = new ArrayList<>();
         samples.add(new Sample(
                 new Double[] { //0
-                        0.0, 0.0, 0.0,
-                        0.0, 1.0, 0.0,
-                        0.0, 1.0, 0.0,
-                        0.0, 1.0, 0.0,
-                        0.0, 0.0, 0.0,
+                        1.0, 1.0, 1.0,
+                        1.0, 0.0, 1.0,
+                        1.0, 0.0, 1.0,
+                        1.0, 0.0, 1.0,
+                        1.0, 1.0, 1.0,
                 },
                 new Double[] {
                         1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
@@ -30,11 +30,11 @@ public class PerceptronTest {
 
         samples.add(new Sample(
                 new Double[] { //1
-                        1.0, 1.0, 0.0,
-                        1.0, 1.0, 0.0,
-                        1.0, 1.0, 0.0,
-                        1.0, 1.0, 0.0,
-                        1.0, 1.0, 0.0,
+                        0.0, 0.0, 1.0,
+                        0.0, 0.0, 1.0,
+                        0.0, 0.0, 1.0,
+                        0.0, 0.0, 1.0,
+                        0.0, 0.0, 1.0,
                 },
                 new Double[] {
                         0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
@@ -43,11 +43,11 @@ public class PerceptronTest {
 
         samples.add(new Sample(
                 new Double[] { //2
-                        0.0, 0.0, 0.0,
-                        1.0, 1.0, 0.0,
-                        0.0, 0.0, 0.0,
-                        0.0, 1.0, 1.0,
-                        0.0, 0.0, 0.0,
+                        1.0, 1.0, 1.0,
+                        0.0, 0.0, 1.0,
+                        1.0, 1.0, 1.0,
+                        1.0, 0.0, 0.0,
+                        1.0, 1.0, 1.0,
                 },
                 new Double[] {
                         0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
@@ -56,11 +56,11 @@ public class PerceptronTest {
 
         samples.add(new Sample(
                 new Double[] { //3
-                        0.0, 0.0, 0.0,
-                        1.0, 1.0, 0.0,
-                        0.0, 0.0, 0.0,
-                        1.0, 1.0, 0.0,
-                        0.0, 0.0, 0.0,
+                        1.0, 1.0, 1.0,
+                        0.0, 0.0, 1.0,
+                        1.0, 1.0, 1.0,
+                        0.0, 0.0, 1.0,
+                        1.0, 1.0, 1.0,
                 },
                 new Double[] {
                         0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
@@ -69,11 +69,11 @@ public class PerceptronTest {
 
         samples.add(new Sample(
                 new Double[] { //4
-                        0.0, 1.0, 0.0,
-                        0.0, 1.0, 0.0,
-                        0.0, 0.0, 0.0,
-                        1.0, 1.0, 0.0,
-                        1.0, 1.0, 0.0,
+                        1.0, 0.0, 1.0,
+                        1.0, 0.0, 1.0,
+                        1.0, 1.0, 1.0,
+                        0.0, 0.0, 1.0,
+                        0.0, 0.0, 1.0,
                 },
                 new Double[] {
                         0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0,
@@ -82,11 +82,11 @@ public class PerceptronTest {
 
         samples.add(new Sample(
                 new Double[] { //5
-                        0.0, 0.0, 0.0,
-                        0.0, 1.0, 1.0,
-                        0.0, 0.0, 0.0,
-                        1.0, 1.0, 0.0,
-                        0.0, 0.0, 0.0,
+                        1.0, 1.0, 1.0,
+                        1.0, 0.0, 0.0,
+                        1.0, 1.0, 1.0,
+                        0.0, 0.0, 1.0,
+                        1.0, 1.0, 1.0,
                 },
                 new Double[] {
                         0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0,
@@ -95,11 +95,11 @@ public class PerceptronTest {
 
         samples.add(new Sample(
                 new Double[] { //6
-                        0.0, 0.0, 0.0,
-                        0.0, 1.0, 1.0,
-                        0.0, 0.0, 0.0,
-                        0.0, 1.0, 0.0,
-                        0.0, 0.0, 0.0,
+                        1.0, 1.0, 1.0,
+                        1.0, 0.0, 0.0,
+                        1.0, 1.0, 1.0,
+                        1.0, 0.0, 1.0,
+                        1.0, 1.0, 1.0,
                 },
                 new Double[] {
                         0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0,
@@ -108,11 +108,11 @@ public class PerceptronTest {
 
         samples.add(new Sample(
                 new Double[] { //7
-                        0.0, 0.0, 0.0,
-                        1.0, 1.0, 0.0,
-                        1.0, 1.0, 0.0,
-                        1.0, 1.0, 0.0,
-                        1.0, 1.0, 0.0,
+                        1.0, 1.0, 1.0,
+                        0.0, 0.0, 1.0,
+                        0.0, 1.0, 0.0,
+                        0.0, 1.0, 0.0,
+                        0.0, 1.0, 0.0,
                 },
                 new Double[] {
                         0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
@@ -121,11 +121,11 @@ public class PerceptronTest {
 
         samples.add(new Sample(
                 new Double[] { //8
-                        0.0, 0.0, 0.0,
-                        0.0, 1.0, 0.0,
-                        0.0, 0.0, 0.0,
-                        0.0, 1.0, 0.0,
-                        0.0, 0.0, 0.0,
+                        1.0, 1.0, 1.0,
+                        1.0, 0.0, 1.0,
+                        1.0, 1.0, 1.0,
+                        1.0, 0.0, 1.0,
+                        1.0, 1.0, 1.0,
                 },
                 new Double[] {
                         0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0,
@@ -134,11 +134,11 @@ public class PerceptronTest {
 
         samples.add(new Sample(
                 new Double[] { //9
-                        0.0, 0.0, 0.0,
-                        0.0, 1.0, 0.0,
-                        0.0, 0.0, 0.0,
-                        1.0, 1.0, 0.0,
-                        0.0, 0.0, 0.0,
+                        1.0, 1.0, 1.0,
+                        1.0, 0.0, 1.0,
+                        1.0, 1.0, 1.0,
+                        0.0, 0.0, 1.0,
+                        1.0, 1.0, 1.0,
                 },
                 new Double[] {
                         0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0,
@@ -157,15 +157,15 @@ public class PerceptronTest {
     public void put() {
         Double[] signals = mPerceptron.put(
                 new Double[] {
-                        0.0, 0.0, 0.0,
-                        1.0, 1.0, 0.0,
-                        0.0, 0.0, 0.0,
-                        1.0, 1.0, 0.0,
-                        0.0, 0.0, 0.0,
+                        1.0, 1.0, 1.0,
+                        0.0, 0.0, 1.0,
+                        1.0, 1.0, 1.0,
+                        0.0, 0.0, 1.0,
+                        1.0, 1.0, 1.0,
                 }
         );
 
-        System.out.println("Результат 1: ");
+        System.out.println("Результат 3?: ");
         for (int i = 0; i < signals.length; i++) {
             System.out.println(signals[i]);
         }
@@ -173,15 +173,63 @@ public class PerceptronTest {
 
         signals = mPerceptron.put(
                 new Double[] {
-                        1.0, 1.0, 0.0,
-                        1.0, 1.0, 0.0,
-                        1.0, 1.0, 0.0,
-                        1.0, 1.0, 0.0,
-                        1.0, 1.0, 0.0,
+                        0.0, 0.0, 1.0,
+                        0.0, 0.0, 1.0,
+                        0.0, 0.0, 1.0,
+                        0.0, 0.0, 1.0,
+                        0.0, 0.0, 1.0,
                 }
         );
 
-        System.out.println("Результат 2: ");
+        System.out.println("Результат 1?: ");
+        for (int i = 0; i < signals.length; i++) {
+            System.out.println(signals[i]);
+        }
+        System.out.println();
+
+        signals = mPerceptron.put(
+                new Double[] {
+                        1.0, 1.0, 1.0,
+                        1.0, 0.0, 1.0,
+                        1.0, 0.0, 1.0,
+                        1.0, 0.0, 1.0,
+                        1.0, 1.0, 1.0,
+                }
+        );
+
+        System.out.println("Результат 0?: ");
+        for (int i = 0; i < signals.length; i++) {
+            System.out.println(signals[i]);
+        }
+        System.out.println();
+
+        signals = mPerceptron.put(
+                new Double[] {
+                        0.0, 0.0, 0.0,
+                        0.0, 0.0, 0.0,
+                        0.0, 0.0, 0.0,
+                        0.0, 0.0, 0.0,
+                        0.0, 0.0, 0.0,
+                }
+        );
+
+        System.out.println("Результат *?: ");
+        for (int i = 0; i < signals.length; i++) {
+            System.out.println(signals[i]);
+        }
+        System.out.println();
+
+        signals = mPerceptron.put(
+                new Double[] {
+                        1.0, 1.0, 1.0,
+                        0.0, 0.0, 1.0,
+                        0.0, 1.0, 0.0,
+                        0.0, 1.0, 0.0,
+                        0.0, 1.0, 0.0,
+                }
+        );
+
+        System.out.println("Результат 7?: ");
         for (int i = 0; i < signals.length; i++) {
             System.out.println(signals[i]);
         }

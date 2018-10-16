@@ -69,7 +69,7 @@ public class Perceptron {
                 foreachAllLayers();
             }
         } while (checkForErrors());
-//        } while (x++ < 10000);
+//        } while (x++ < 1000);
     }
 
     public Double[] put(Double[] inputSignals) {
@@ -90,7 +90,7 @@ public class Perceptron {
         }
     }
 
-    public Double[] getOutputSignals() {
+    private Double[] getOutputSignals() {
         return mLayers[mLayers.length - 1].getSignals();
     }
 
@@ -104,17 +104,17 @@ public class Perceptron {
             Double value = getOutputNeurons()[i].getSignal() - mExpectedResults[i];
             errorSum += value * value;
         }
-        System.out.println("ERROR: " + errorSum / getOutputNeurons().length);
-        return errorSum / getOutputNeurons().length;
+        System.out.println("ERROR: " + errorSum);
+        return errorSum;
     }
 
     public Double[][] foreachAllNeurons(Layer layer, Double[][] e) {
         Neuron[] neurons = layer.getNeurons();
         Double[][] errors = new Double[neurons.length][];
+
         if (e == null) {
 
             for (int i = 0; i < neurons.length; i++) { //количество нейронов
-
                 errors[i] = new Double[neurons[i].getInputSynapses().length]; //инициализируем массивы ошибок
 
                 for (int j = 0; j < neurons[i].getInputSynapses().length; j++) { //количество синапсов
@@ -128,9 +128,7 @@ public class Perceptron {
         } else {
 
             for (int i = 0; i < neurons.length; i++) { //количество нейронов
-
                 errors[i] = new Double[neurons[i].getInputSynapses().length]; //инициализируем массивы ошибок
-
                 for (int j = 0; j < neurons[i].getInputSynapses().length; j++) { //количество синапсов
                     Double sum = 0.0;
                     for (int k = 0; k < e.length; k++) {
@@ -143,6 +141,7 @@ public class Perceptron {
                 }
             }
         }
+
         return errors;
     }
 

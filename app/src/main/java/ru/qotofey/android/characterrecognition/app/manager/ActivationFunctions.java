@@ -15,12 +15,12 @@ public class ActivationFunctions {
 
     //сигмоидальная активационная функция
     public static Double sigmoid(Double x) {
-        return 1.0 / (1.0 + Math.exp(Constants.ALPHA * x));
+        return 1.0 / (1.0 + Math.exp(-Constants.ALPHA * x));
     }
 
     //производная сигмоидальной активационной функции
     public static Double derivativeSigmoid(Double x) {
-        return -Constants.ALPHA * sigmoid(x) * (1 + sigmoid(x));
+        return Constants.ALPHA * sigmoid(x) * (1 - sigmoid(x));
     }
 
     //активационная функция ReLU

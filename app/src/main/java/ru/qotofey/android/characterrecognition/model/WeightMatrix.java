@@ -14,7 +14,7 @@ public class WeightMatrix {
             for (int j = 0; j < mWeightMatrix[i].length; j++) {
 //                mWeightMatrix[i][j] = Math.random() * 1.0 - 0.5;
 //                mWeightMatrix[i][j] = Math.random() * 1.0;
-                mWeightMatrix[i][j] = 0.01;
+                mWeightMatrix[i][j] = 0.5;
             }
         }
     }

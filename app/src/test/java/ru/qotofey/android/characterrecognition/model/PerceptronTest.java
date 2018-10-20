@@ -170,7 +170,7 @@ public class PerceptronTest {
 //                        0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
 //                }
 //        ));
-
+//
 //        samples.add(new Sample(
 //                new Double[] { //4
 //                        1.0, 0.0, 1.0,
@@ -304,10 +304,10 @@ public class PerceptronTest {
         signals = mPerceptron.put(
                 new Double[] {
                         0.0, 0.0, 1.0,
-                        0.0, 0.4, 1.0,
                         0.0, 0.0, 1.0,
                         0.0, 0.0, 1.0,
-                        0.0, 0.0, 0.0,
+                        0.0, 0.0, 1.0,
+                        0.0, 0.0, 1.0,
                 }
         );
 

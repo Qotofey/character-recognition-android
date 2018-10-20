@@ -61,19 +61,19 @@ public class Perceptron {
     //обучение
     public void learn() {
         //ошибка есть, сеть нужно обучить
-        int x = 0;
+//        int x = 0;
         do {
             for (int i = 0; i < mSampleList.size(); i++ ) {
+//                System.out.println("Выборка = " + i);
                 mExpectedResults = mSampleList.get(i).getResult();
                 foreachAllLayers();
             }
-//        } while (checkForErrors());
-        } while (x++ < 1000);
+        } while (checkForErrors());
+//        } while (x++ < 1000);
     }
 
     public Double[] put(Double[] inputSignals) {
         Double[] signals = inputSignals;
-
         for (int i = 0; i < mLayers.length; i++) {
             mLayers[i].setInputSignals(signals);
             signals = mLayers[i].getSignals();
@@ -85,6 +85,7 @@ public class Perceptron {
     public void foreachAllLayers() {
         Double[][] errors = null;
         for (int i = mLayers.length - 1; i >= 0; i--) {
+//            System.out.println("слой = " + i);
             errors = foreachAllNeurons(mLayers[i], errors);
         }
     }
@@ -103,8 +104,8 @@ public class Perceptron {
             Double value = getOutputNeurons()[i].getSignal() - mExpectedResults[i];
             errorSum += value * value;
         }
-        System.out.println("ERROR: " + errorSum / getOutputNeurons().length);
-        return errorSum / getOutputNeurons().length;
+        System.out.println("ERROR: " + errorSum);
+        return errorSum;
     }
 
     public Double[][] foreachAllNeurons(Layer layer, Double[][] e) {
@@ -119,9 +120,12 @@ public class Perceptron {
                     Double weight = layer.getNeurons()[i].getInputSynapses()[j].getWeight();
                     Double signal = layer.getNeurons()[i].getInputSynapses()[j].getSignal();
 
-                    errors[i][j] = 2 * (neurons[i].getSignal() - mExpectedResults[i]) * neurons[i].getDerivativeSignal() * signal; //находим ошибку
-                    layer.getNeurons()[i].getInputSynapses()[j].setWeight(weight - Constants.H * errors[i][j]);
+//                    System.out.print(" | " + weight);
+
+                    errors[i][j] = (mExpectedResults[i] - neurons[i].getSignal()) * neurons[i].getDerivativeSignal(); //находим ошибку
+                    layer.getNeurons()[i].getInputSynapses()[j].setWeight(weight + Constants.H * errors[i][j] * signal);
                 }
+//                System.out.println(" |||| :" + i);
             }
 
         } else {
@@ -133,23 +137,27 @@ public class Perceptron {
                     for (int k = 0; k < e.length; k++) {
                         sum = e[k][i];
                     }
-                    double weight = layer.getNeurons()[i].getInputSynapses()[j].getWeight();
-                    double signal = layer.getNeurons()[i].getInputSynapses()[j].getSignal();
+                    Double weight = layer.getNeurons()[i].getInputSynapses()[j].getWeight();
+                    Double signal = layer.getNeurons()[i].getInputSynapses()[j].getSignal();
 
-                    errors[i][j] = sum * neurons[i].getDerivativeSignal() * signal; //находим ошибку
+//                    System.out.print(" | " + weight);
 
-                    layer.getNeurons()[i].getInputSynapses()[j].setWeight(weight - Constants.H * errors[i][j]);
+                    errors[i][j] = sum * neurons[i].getDerivativeSignal(); //находим ошибку
+                    layer.getNeurons()[i].getInputSynapses()[j].setWeight(weight + Constants.H * errors[i][j] * signal);
                 }
+//                System.out.println(" |||| :" + i);
             }
         }
 
         return errors;
     }
 
+    private int x = 0;
     //проверка ошибки
     public Boolean checkForErrors() {
         Double value = getErrorSum();
-        return value > 0.001 || value < -0.001;
+//        return value > 0.001 || value < -0.001;
+        return x++ < 1000;
     }
 
 }

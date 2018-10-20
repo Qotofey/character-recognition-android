@@ -3,6 +3,7 @@ package ru.qotofey.android.characterrecognition.app.manager;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ActivationFunctionsTest {
 
@@ -165,6 +166,46 @@ public class ActivationFunctionsTest {
          * Вторая итерация
          */
 
+
+    }
+
+    @Test
+    public void sigmoid() {
+        //первый тест
+        Double input = 0.0;
+        Double output;
+        Double expected = 0.5;
+        Double delta = 0.001;
+        ActivationFunctions activationFunctions = new ActivationFunctions();
+
+        output = activationFunctions.sigmoid(input);
+
+        assertEquals(expected, output, delta);
+
+        //второй тест
+        input = 1.0;
+        expected = 0.731;
+        output = activationFunctions.sigmoid(input);
+        assertEquals(expected, output, delta);
+
+        //третий тест
+        input = -1.0;
+        expected = 1.0 - 0.731;
+        output = activationFunctions.sigmoid(input);
+        assertEquals(expected, output, delta);
+
+        //общий тест
+        for (int i = 0; i < 99999; i++) {
+            input = 0.01;
+            Double output0 = activationFunctions.sigmoid(input * i);
+            Double output1 = activationFunctions.sigmoid(-input * i);
+            assertTrue(output0 <= 1.0 && output1 >= 0.0);
+        }
+
+    }
+
+    @Test
+    public void derivativeSigmoid() {
 
     }
 }

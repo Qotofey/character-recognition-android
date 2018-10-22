@@ -82,13 +82,10 @@ public class MatrixMath {
             int col = 0;
             for (int j = 0; j < m2; j++) {
                 resultMatrix[row][col] = dot(matrix1[i], T(matrix2)[j]);
-//                System.out.print(" || " + resultMatrix[row][col]);
                 col++;
             }
             row++;
-//            System.out.println();
         }
-//        System.out.println();
         return resultMatrix;
     }
 

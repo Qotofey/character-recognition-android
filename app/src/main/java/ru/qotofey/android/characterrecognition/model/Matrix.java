@@ -9,6 +9,11 @@ public class Matrix {
     }
 
     public Matrix transpose() {
+
+        for (int i = 0; i < ) {
+
+        }
+
         return null;
     }
 

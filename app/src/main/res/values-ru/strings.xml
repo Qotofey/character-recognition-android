@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Распознание символов</string>
+    <string name="version">Версия 1.0</string>
+    <string name="info_author">Приложение разработал Тимофей Юрьевич Шуфлетюк</string>
+    <string name="new_sample">Новая обучающий тест</string>
+    <string name="save">Сохранить</string>
+    <string name="cancel">Отмена</string>
+    <string name="reset">Сброс</string>
+    <string name="character">Символ</string>
+    <string name="storage">Место хранения</string>
+    <string name="define">Определить</string>
+    <string name="draw_on_the_canvas_characters">Нарисуйте на канве символы от 0 до 9</string>
+
+    <string-array name="character_list">
+        <item>0 - нуль</item>
+        <item>1 - единица</item>
+        <item>2 - двойка</item>
+        <item>3 - тройка</item>
+        <item>4 - четвёрка</item>
+        <item>5 - пятёрка</item>
+        <item>6 - шестёрка</item>
+        <item>7 - семёрка</item>
+        <item>8 - восьмёрка</item>
+        <item>9 - девятка</item>
+    </string-array>
+
+</resources>

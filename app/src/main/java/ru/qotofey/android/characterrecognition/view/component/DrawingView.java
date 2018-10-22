@@ -8,9 +8,11 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -180,6 +182,31 @@ public class DrawingView extends View {
 
     public Bitmap getBitmap() {
         return mBitmap;
+    }
+
+    public Double[] getCompressBitmap() {
+        compressBitmap();
+
+        ByteBuffer buffer = ByteBuffer.allocate(mBitmap.getByteCount());
+        mBitmap.copyPixelsToBuffer(buffer);
+        byte[] bytes = buffer.array();
+
+        Double[] list = new Double[bytes.length / 4];
+        for (int i = 0; i < bytes.length / 4; i++) {
+            int j = 4 * i;
+            byte byte0 = (bytes[j + 0] < 0) ? (byte) (bytes[j + 0] + 256) : bytes[j + 0];
+            byte byte1 = (bytes[j + 1] < 0) ? (byte) (bytes[j + 1] + 256) : bytes[j + 1];
+            byte byte2 = (bytes[j + 2] < 0) ? (byte) (bytes[j + 2] + 256) : bytes[j + 2];
+            list[i] = ((byte0 + byte1 + byte2) != 0.0) ? 1.0 : 0.0;
+
+        }
+        Log.e("TAG", "" + list.length);
+//
+//        for (int i = 0; i < list.length; i++) {
+//            Log.e("(" + i + ")", "" + list[i]);
+//        }
+
+        return list;
     }
 
     public void setBitmap(Bitmap bitmap) {

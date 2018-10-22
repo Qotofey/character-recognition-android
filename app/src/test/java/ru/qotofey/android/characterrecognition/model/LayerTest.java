@@ -4,6 +4,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import ru.qotofey.android.characterrecognition.model.deprecated.Layer;
+import ru.qotofey.android.characterrecognition.model.deprecated.WeightMatrix;
+
 import static junit.framework.TestCase.assertTrue;
 
 public class LayerTest {

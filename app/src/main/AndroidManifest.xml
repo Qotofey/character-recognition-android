@@ -20,6 +20,19 @@
         </activity>
 
         <activity android:name=".view.activity.MainActivity"></activity>
+
+        <activity
+            android:name=".view.activity.SampleListActivity"
+            android:parentActivityName=".view.activity.MainActivity">
+
+        </activity>
+
+        <activity
+            android:name=".view.activity.SampleActivity"
+            android:parentActivityName=".view.activity.SampleListActivity">
+
+        </activity>
+
     </application>
 
 </manifest>

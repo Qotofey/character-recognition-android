@@ -1,5 +1,6 @@
-package ru.qotofey.android.characterrecognition.model;
+package ru.qotofey.android.characterrecognition.model.deprecated;
 
+@Deprecated
 public class Layer {
     private int mCountNeurons;
 

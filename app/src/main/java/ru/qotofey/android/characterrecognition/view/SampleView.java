@@ -1,8 +1,5 @@
 package ru.qotofey.android.characterrecognition.view;
 
-public interface TrainingView {
-
-
-
+public interface SampleView extends LoadingView {
 
 }

@@ -47,17 +47,48 @@ public class MatrixMathTest {
     }
 
     Double[][] weights_0_1 = new Double[][] {
-            { .14, .09, },
-            { -.5, -.2, },
-            { .65, .39, },
+            { .014, .09, -.05, -.02, -.05, -.02, -.05, -.02, .025, -.031, .014, .09, -.05, -.02, -.05,},
+            { -.05, -.02, .014, .09, .054, .09, -.02, -.05, -.02, .025, -.031, -.02, .025, -.031, .014, },
+            { .025, -.031, .014, .23, .011, .01, .014, .09, -.05, -.02, -.05, -.02, .025, -.031, .014, },
+            { .014, .09, -.05, -.02, .014, .09, .014, .09, -.05, -.02, -.05, -.02, .025, -.031, .014, },
+            { -.05, -.02, .025, -.031, .014, .23, .09, -.05, -.02, .014, .09, -.02, .025, -.031, .014, },
+            { .025, -.031, .014, .09, -.05, -.02, -.02, .025, -.031, .014, .23, -.02, .025, -.031, .014, },
+            { .014, .09, .025, -.031, .014, .09, -.02, -.02, .025, -.031, .014, -.02, .025, -.031, .014, },
+            { -.05, -.02, .014, .09, -.05, -.02, -.02, -.02, .025, -.031, .014, -.02, .025, -.031, .014, },
+            { .025, -.031, -.05, -.02, .014, .09, -.05, -.02, .014, .09, -.05, -.02, -.02, .025, -.031, },
+            { .014, .09, -.02, .014, .09, -.05, .025, -.031, .014, .09, -.05, -.02, -.02, .025, -.031, .014,},
+            { -.05, -.02, .014, .09, -.02, .014, -.02, .014, .09, -.05, .025, -.02, .025, -.031, .014,},
+            { .025, -.031, .014, .09, -.02, .014, -.031, .014, .09, -.05, -.02, -.02, .025, -.031, .014,},
+            { .014, .09, .025, -.031, .014, .09, .09, -.02, .014, .09, -.05, -.02, .025, -.031, .014,},
+            { -.05, -.02, -.05, -.02, -.031, .09, -.02, .014, .09, -.05, .025, -.02, .025, -.031, .014,},
+            { .025, -.031, .025, -.031, -.05, -.02, -.031, -.05, -.02, .014, .09, -.02, .025, -.031, .014,},
+
+//            { .014, .09, },
+//            { -.05, -.02, },
+//            { .025, -.031, },
+
 //            { 0.5, 0.5, },
 //            { 0.5, 0.5, },
 //            { 0.5, 0.5, },
 
     };
     Double[][] weights_1_2 = new Double[][] {
-            { 0.17, },
-            { 0.21, },
+            { .014, .09, .014, .014, .014, .09, .014, .014, 0.02, .24, },
+            { -.05, -.02, .04, -.031, .014, .014, .09, .014, .014, 0.02, },
+            { .025, -.031, .4, -.031, .014, .014, .09, .014, .014, 0.02, },
+            { 0.017, 0.01, .34,-.031, .014, .014, .09, .014, .014, 0.02, },
+            { 0.021, 0.02, .24, .014, .014, .014, .09, .014, .014, 0.02, },
+            { .014, .09, .014, -.031, 0.021, 0.02, .24, .014, .014, .014, },
+            { -.05, -.02, .04, -.031, 0.021, 0.02, .24, .014, .014, .014, },
+            { .025, -.031, .4, .025, 0.021, 0.02, .24, .014, .014, .014, },
+            { 0.017, 0.01, .34, .025, -.05, -.02, .04, -.031, 0.021, 0.02, },
+            { 0.021, 0.02, .24, .025, -.05, -.02, .04, -.031, 0.021, 0.02, },
+            { .014, .09, .014, 0.021, -.05, -.02, .04, -.031, 0.021, 0.02, },
+            { -.05, -.02, .04, 0.21, -.05, -.02, .04, -.031, 0.021, 0.02, },
+            { .025, -.031, .4, 0.021, -.05, -.02, .04, -.031, 0.021, 0.02, },
+            { 0.017, 0.01, .34, 0.21, -.05, -.02, .04, -.031, 0.021, 0.02, },
+            { 0.021, 0.02, .24, 0.01, -.05, -.02, .04, -.091, 0.021, 0.02, },
+
 //            { 0.5, },
 //            { 0.5, },
     };
@@ -74,93 +105,248 @@ public class MatrixMathTest {
 
 //        train(inputs, expected);
 
-        int epochs = 10000;
+        int epochs = 5000;
         for (int i = 0; i < epochs; i++) {
             train(
                     new Double[][] {
-                            { 0.0, 0.0, 0.0, },
+                            {
+                                    1.0, 1.0, 1.0,
+                                    1.0, 0.0, 1.0,
+                                    1.0, 0.0, 1.0,
+                                    1.0, 0.0, 1.0,
+                                    1.0, 1.0, 1.0,
+                            }
                     },
                     new Double[][] {
-                            { 0.0, },
+                            {
+                                    1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                            }
+                    }
+            );
+
+            train(
+                    new Double[][] {
+                            {
+                                    0.0, 0.0, 1.0,
+                                    0.0, 0.0, 1.0,
+                                    0.0, 0.0, 1.0,
+                                    0.0, 0.0, 1.0,
+                                    0.0, 0.0, 1.0,
+                            }
+                    },
+                    new Double[][] {
+                            {
+                                    0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                            }
                     }
             );
             train(
                     new Double[][] {
-                            { 0.0, 0.0, 0.0, },
+                            {
+                                    0.0, 0.0, 1.0,
+                                    0.0, 1.0, 1.0,
+                                    0.0, 0.0, 1.0,
+                                    0.0, 0.0, 1.0,
+                                    0.0, 0.0, 1.0,
+                            }
                     },
                     new Double[][] {
-                            { 1.0, },
+                            {
+                                    0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                            }
                     }
             );
             train(
                     new Double[][] {
-                            { 0.0, 1.0, 0.0, },
+                            {
+                                    0.0, 0.0, 1.0,
+                                    0.0, 1.0, 5.0,
+                                    0.0, 0.0, 1.0,
+                                    0.0, 0.0, 1.0,
+                                    0.0, 0.0, 0.0,
+                            }
                     },
                     new Double[][] {
-                            { 0.0, },
+                            {
+                                    0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                            }
                     }
             );
+
             train(
                     new Double[][] {
-                            { 0.0, 1.0, 1.0, },
+                            {
+                                    1.0, 1.0, 1.0,
+                                    0.0, 0.0, 1.0,
+                                    1.0, 1.0, 1.0,
+                                    1.0, 0.0, 0.0,
+                                    1.0, 1.0, 1.0,
+                            }
                     },
                     new Double[][] {
-                            { 0.0, },
+                            {
+                                    0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                            }
                     }
             );
+
             train(
                     new Double[][] {
-                            { 1.0, 0.0, 0.0, },
+                            {
+                                    1.0, 1.0, 1.0,
+                                    0.0, 0.0, 1.0,
+                                    1.0, 1.0, 1.0,
+                                    0.0, 0.0, 1.0,
+                                    1.0, 1.0, 1.0,
+                            }
                     },
                     new Double[][] {
-                            { 1.0, },
+                            {
+                                    0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                            }
                     }
             );
+
             train(
                     new Double[][] {
-                            { 1.0, 0.0, 1.0, },
+                            {
+                                    1.0, 0.0, 1.0,
+                                    1.0, 0.0, 1.0,
+                                    1.0, 1.0, 1.0,
+                                    0.0, 0.0, 1.0,
+                                    0.0, 0.0, 1.0,
+                            }
                     },
                     new Double[][] {
-                            { 1.0, },
+                            {
+                                    0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                            }
                     }
             );
-            train(
-                    new Double[][] {
-                            { 1.0, 1.0, 0.0, },
-                    },
-                    new Double[][] {
-                            { 0.0, },
-                    }
-            );
-            train(
-                    new Double[][] {
-                            { 1.0, 1.0, 1.0, },
-                    },
-                    new Double[][] {
-                            { 1.0, },
-                    }
-            );
+//            train(
+//                    new Double[][] {
+//                            { 0.0, 0.0, 0.0, },
+//                    },
+//                    new Double[][] {
+//                            { 0.0, 0.0},
+//                    }
+//            );
+//            train(
+//                    new Double[][] {
+//                            { 0.0, 0.0, 0.0, },
+//                    },
+//                    new Double[][] {
+//                            { 1.0, 1.0, },
+//                    }
+//            );
+//            train(
+//                    new Double[][] {
+//                            { 0.0, 1.0, 0.0, },
+//                    },
+//                    new Double[][] {
+//                            { 0.0, 0.0, },
+//                    }
+//            );
+//            train(
+//                    new Double[][] {
+//                            { 0.0, 1.0, 1.0, },
+//                    },
+//                    new Double[][] {
+//                            { 0.0, 0.0, },
+//                    }
+//            );
+//            train(
+//                    new Double[][] {
+//                            { 1.0, 0.0, 0.0, },
+//                    },
+//                    new Double[][] {
+//                            { 1.0, 1.0, },
+//                    }
+//            );
+//            train(
+//                    new Double[][] {
+//                            { 1.0, 0.0, 1.0, },
+//                    },
+//                    new Double[][] {
+//                            { 1.0, 1.0, },
+//                    }
+//            );
+//            train(
+//                    new Double[][] {
+//                            { 1.0, 1.0, 0.0, },
+//                    },
+//                    new Double[][] {
+//                            { 0.0, 0.0, },
+//                    }
+//            );
+//            train(
+//                    new Double[][] {
+//                            { 1.0, 1.0, 1.0, },
+//                    },
+//                    new Double[][] {
+//                            { 1.0, 1.0, },
+//                    }
+//            );
 //            Double[][] trainLoss = MatrixMath.multiply(predict(inputs), MatrixMath.T(expected));
 //            System.out.println("Error: " + trainLoss[0][0]);
         }
 
-        Double[][] result = predict(new Double[][] {{ 1.0, 1.0, 0.0, },});
-        System.out.println("Результат матрица e(0): " + result[0][0]);
-        result = predict(new Double[][] {{ 0.0, 0.0, 0.0, },});
-        System.out.println("Результат матрица e(0): " + result[0][0]);
 
-        result = predict(new Double[][] {{ 0.0, 0.0, 1.0, },});
-        System.out.println("Результат матрица e(1): " + result[0][0]);
+        Double[][] result = predict(new Double[][] {
+                {
+                        1.0, 1.0, 1.0,
+                        1.0, 0.0, 1.0,
+                        1.0, 0.0, 1.0,
+                        1.0, 0.0, 1.0,
+                        1.0, 1.0, 1.0,
+                }
+        });
+        System.out.println("Результат матрица e(0): " + result[0][0] + " | " + result[0][1] + " | " + result[0][2] + " | " + result[0][3]);
 
-        result = predict(new Double[][] {{ 0.0, 1.0, 0.0, },});
-        System.out.println("Результат матрица e(0): " + result[0][0]);
 
-        result = predict(new Double[][] {{ 1.0, 1.0, 1.0, },});
-        System.out.println("Результат матрица e(1): " + result[0][0]);
+        result = predict(new Double[][] {
+                {
+                        0.0, 0.0, 1.0,
+                        0.0, 0.0, 1.0,
+                        0.0, 0.0, 1.0,
+                        0.0, 0.0, 1.0,
+                        0.0, 0.0, 1.0,
+                }
+        });
+        System.out.println("Результат матрица e(1): " + result[0][0] + " | " + result[0][1] + " | " + result[0][2] + " | " + result[0][3]);
 
-        result = predict(new Double[][] {{ 1.0, 0.0, 1.0, },});
-        System.out.println("Результат матрица e(1): " + result[0][0]);
+        result = predict(new Double[][] {
+                {
+                        1.0, 1.0, 1.0,
+                        0.0, 0.0, 1.0,
+                        1.0, 1.0, 1.0,
+                        1.0, 0.0, 1.0,
+                        1.0, 1.0, 1.0,
+                }
+        });
+        System.out.println("Результат матрица e(2): " + result[0][0] + " | " + result[0][1] + " | " + result[0][2] + " | " + result[0][3]);
 
+        result = predict(new Double[][] {
+                {
+                        1.0, 0.0, 1.0,
+                        1.0, 0.0, 1.0,
+                        1.0, 1.0, 1.0,
+                        0.0, 0.0, 1.0,
+                        0.0, 1.0, 1.0,
+                }
+        });
+        System.out.println("Результат матрица e(3): " + result[0][0] + " | " + result[0][1] + " | " + result[0][2] + " | " + result[0][3]);
+
+        result = predict(new Double[][] {
+                {
+                        1.0, 0.0, 1.0,
+                        1.0, 0.0, 1.0,
+                        1.0, 1.0, 1.0,
+                        0.0, 0.0, 1.0,
+                        0.0, 1.0, 1.0,
+                }
+        });
+        System.out.println("Результат матрица e(4): " + result[0][0] + " | " + result[0][1] + " | " + result[0][2] + " | " + result[0][3] + " | " + result[0][4]);
 
     }
 
@@ -223,276 +409,6 @@ public class MatrixMathTest {
         );
 
     }
-
-//    private Double MSE(Double[][] y, Double[][] Y) {
-//        Double sum = 0.0;
-//        for (int i = 0; i < y.length; i++) {
-//            sum += (y[i][0] - Y[i][0]) * (y[i][0] - Y[i][0]);
-//        }
-//        return sum;
-//    }
-
-
-//    private Double[][] predict(Double[][] inputs) {
-//        Double[][] inputs_1 = MatrixMath.multiply(weights_0_1, inputs);
-//        Double[][] outputs_1 = Mapper.sigmoid(inputs_1);
-//
-//        Double[][] inputs_2 = MatrixMath.multiply(weights_1_2, outputs_1);
-//        Double[][] outputs_2 = Mapper.sigmoid(inputs_2);
-//
-//        return outputs_2;
-//    }
-
-//    private void train(Double[][] inputs, Double[][] expected) {
-//        Double[][] inputs_1 = MatrixMath.multiply(weights_0_1, inputs);
-////
-////        System.out.println("Новая матрица inputs_1: ");
-////        for (int i = 0; i < inputs_1.length; i++) {
-////            for (int j = 0; j < inputs_1[0].length; j++) {
-////                System.out.print(" | " + inputs_1[i][j]);
-////            }
-////            System.out.println(" | ");
-////        }
-//
-//        Double[][] outputs_1 = Mapper.sigmoid(inputs_1);
-////        System.out.println("Новая матрица outputs_1: ");
-////        for (int i = 0; i < outputs_1.length; i++) {
-////            for (int j = 0; j < outputs_1[0].length; j++) {
-////                System.out.print(" | " + outputs_1[i][j]);
-////            }
-////            System.out.println(" | ");
-////        }
-//
-//        Double[][] inputs_2 = MatrixMath.multiply(weights_1_2, outputs_1);
-//
-////        System.out.println("Новая матрица inputs_2: ");
-////        for (int i = 0; i < inputs_2.length; i++) {
-////            for (int j = 0; j < inputs_2[0].length; j++) {
-////                System.out.print(" | " + inputs_2[i][j]);
-////            }
-////            System.out.println(" | ");
-////        }
-//
-//        Double[][] outputs_2 = Mapper.sigmoid(inputs_2);
-//
-////        System.out.println("Новая матрица outputs_2: ");
-////        for (int i = 0; i < outputs_2.length; i++) {
-////            for (int j = 0; j < outputs_2[0].length; j++) {
-////                System.out.print(" | " + outputs_2[i][j]);
-////            }
-////            System.out.println(" | ");
-////        }
-////
-//        Double[][] actualPredict = outputs_2;
-//
-//        Double[][] errorLayer2 = MatrixMath.difference(actualPredict, expected);
-//        Double[][] gradientLayer2 = MatrixMath.multiply(actualPredict, MatrixMath.T(MatrixMath.difference(1.0, actualPredict))); //actualPredict * (1 - actualPredict)
-////
-////        System.out.println("Новая матрица errorLayer2: ");
-////        for (int i = 0; i < errorLayer2.length; i++) {
-////            for (int j = 0; j < errorLayer2[0].length; j++) {
-////                System.out.print(" | " + errorLayer2[i][j]);
-////            }
-////            System.out.println(" | ");
-////        }
-////        System.out.println("Новая матрица gradientLayer2: ");
-////        for (int i = 0; i < gradientLayer2.length; i++) {
-////            for (int j = 0; j < gradientLayer2[0].length; j++) {
-////                System.out.print(" | " + gradientLayer2[i][j]);
-////            }
-////            System.out.println(" | ");
-////        }
-//
-//        Double[][] weightsDeltaLayer2 = MatrixMath.multiply(MatrixMath.T(errorLayer2), gradientLayer2);
-////
-////        System.out.println("n = " + weightsDeltaLayer2.length);
-////        System.out.println("m = " + weightsDeltaLayer2[0].length);
-////        System.out.println("_n = " + outputs_2.length);
-////        System.out.println("_m = " + outputs_2[0].length);
-//
-////        weights_1_2 = MatrixMath.difference(weights_0_1, MatrixMath.dot(weightsDeltaLayer2[0], outputs_1[0]) * Constants.H);
-//        weights_1_2 = MatrixMath.difference(
-//                weights_1_2,
-//                MatrixMath.multiply(
-//                        MatrixMath.multiply(
-//                                MatrixMath.T(weightsDeltaLayer2),
-//                                MatrixMath.reshape(1, outputs_1.length * outputs_1[0].length, outputs_1)
-//                        ),
-//                        Constants.H
-//                )
-//        );
-//
-////        System.out.println("Новая матрица weightsDeltaLayer2: ");
-////        for (int i = 0; i < weightsDeltaLayer2.length; i++) {
-////            for (int j = 0; j < weightsDeltaLayer2[0].length; j++) {
-////                System.out.print(" | " + weightsDeltaLayer2[i][j]);
-////            }
-////            System.out.println(" | ");
-////        }
-////
-////        System.out.println("Новая матрица weights_1_2: ");
-////        for (int i = 0; i < weights_1_2.length; i++) {
-////            for (int j = 0; j < weights_1_2[0].length; j++) {
-////                System.out.print(" | " + weights_1_2[i][j]);
-////            }
-////            System.out.println(" | ");
-////        }
-////        System.out.println();
-//
-////        Double[][] errorLayer1 = MatrixMath.multiply(MatrixMath.reshape(1, weightsDeltaLayer2.length * weightsDeltaLayer2[0].length, weightsDeltaLayer2),  weights_1_2);
-//        Double[][] errorLayer1 = MatrixMath.multiply(weightsDeltaLayer2,  weights_1_2);
-////        System.out.println("Новая матрица errorLayer1: ");
-////        for (int i = 0; i < errorLayer1.length; i++) {
-////            for (int j = 0; j < errorLayer1[0].length; j++) {
-////                System.out.print(" | " + errorLayer1[i][j]);
-////            }
-////            System.out.println(" | ");
-////        }
-//
-////        System.out.println("Новая матрица outputs_1: ");
-////        for (int i = 0; i < outputs_1.length; i++) {
-////            for (int j = 0; j < outputs_1[0].length; j++) {
-////                System.out.print(" | " + outputs_1[i][j]);
-////            }
-////            System.out.println(" | ");
-////        }
-//        Double[][] gradientLayer1 = MatrixMath.multiply(outputs_1, MatrixMath.T(MatrixMath.difference(1.0, outputs_1)));
-//
-////        System.out.println("Новая матрица gradientLayer1: ");
-////        for (int i = 0; i < gradientLayer1.length; i++) {
-////            for (int j = 0; j < gradientLayer1[0].length; j++) {
-////                System.out.print(" | " + gradientLayer1[i][j]);
-////            }
-////            System.out.println(" | ");
-////        }
-//
-//        Double[][] weightsDeltaLayer1 = MatrixMath.multiply(errorLayer1, gradientLayer1);
-//
-////        System.out.println("Новая матрица weightsDeltaLayer1: ");
-////        for (int i = 0; i < weightsDeltaLayer1.length; i++) {
-////            for (int j = 0; j < weightsDeltaLayer1[0].length; j++) {
-////                System.out.print(" | " + weightsDeltaLayer1[i][j]);
-////            }
-////            System.out.println(" | ");
-////        }
-//
-//        weights_0_1 = MatrixMath.T(
-//                MatrixMath.difference(
-//                        MatrixMath.multiply(
-//                            inputs,
-//                            weightsDeltaLayer1
-//                        ),
-//                        Constants.H
-//                )
-//        );
-//
-//
-//        /////////////////////////////
-//        /////////////////////////////
-////        System.out.println("/////////////////////////////");
-////
-////        inputs_1 = MatrixMath.multiply(weights_0_1, inputs);
-////
-////        System.out.println("Новая матрица inputs_1: ");
-////        for (int i = 0; i < inputs_1.length; i++) {
-////            for (int j = 0; j < inputs_1[0].length; j++) {
-////                System.out.print(" | " + inputs_1[i][j]);
-////            }
-////            System.out.println(" | ");
-////        }
-////        System.out.println("Новая матрица outputs_1: ");
-////        outputs_1 = Mapper.sigmoid(inputs_1);
-////        for (int i = 0; i < outputs_1.length; i++) {
-////            for (int j = 0; j < outputs_1[0].length; j++) {
-////                System.out.print(" | " + outputs_1[i][j]);
-////            }
-////            System.out.println(" | ");
-////        }
-////
-////        inputs_2 = MatrixMath.multiply(weights_1_2, outputs_1);
-////
-////        System.out.println("Новая матрица inputs_2: ");
-////        for (int i = 0; i < inputs_2.length; i++) {
-////            for (int j = 0; j < inputs_2[0].length; j++) {
-////                System.out.print(" | " + inputs_2[i][j]);
-////            }
-////            System.out.println(" | ");
-////        }
-////
-////        outputs_2 = Mapper.sigmoid(inputs_2);
-////
-////        System.out.println("Новая матрица outputs_2: ");
-////        for (int i = 0; i < outputs_2.length; i++) {
-////            for (int j = 0; j < outputs_2[0].length; j++) {
-////                System.out.print(" | " + outputs_2[i][j]);
-////            }
-////            System.out.println(" | ");
-////        }
-////
-////        actualPredict = outputs_2;
-////
-////        errorLayer2 = MatrixMath.difference(actualPredict, expected);
-////        gradientLayer2 = MatrixMath.vectorsMultiply(actualPredict, MatrixMath.difference(1.0, actualPredict)); //actualPredict * (1 - actualPredict)
-////        weightsDeltaLayer2 = MatrixMath.vectorsMultiply(errorLayer2, gradientLayer2);
-////        errorLayer1 = MatrixMath.multiply(weightsDeltaLayer2,  weights_1_2);
-////        gradientLayer1 = MatrixMath.multiply(outputs_1, MatrixMath.T(MatrixMath.difference(1.0, outputs_1)));
-////        weightsDeltaLayer1 = MatrixMath.multiply(errorLayer1, gradientLayer1);
-////        weights_0_1 = MatrixMath.T(
-////                MatrixMath.difference(
-////                        MatrixMath.multiply(
-////                                inputs,
-////                                weightsDeltaLayer1
-////                        ),
-////                        Constants.H
-////                )
-////        );
-//
-//
-//        /////////////////////////////
-//        /////////////////////////////
-////        System.out.println("/////////////////////////////");
-////
-////        inputs_1 = MatrixMath.multiply(weights_0_1, inputs);
-////
-////        System.out.println("Новая матрица inputs_1: ");
-////        for (int i = 0; i < inputs_1.length; i++) {
-////            for (int j = 0; j < inputs_1[0].length; j++) {
-////                System.out.print(" | " + inputs_1[i][j]);
-////            }
-////            System.out.println(" | ");
-////        }
-////        System.out.println("Новая матрица outputs_1: ");
-////        outputs_1 = Mapper.sigmoid(inputs_1);
-////        for (int i = 0; i < outputs_1.length; i++) {
-////            for (int j = 0; j < outputs_1[0].length; j++) {
-////                System.out.print(" | " + outputs_1[i][j]);
-////            }
-////            System.out.println(" | ");
-////        }
-////
-////        inputs_2 = MatrixMath.multiply(weights_1_2, outputs_1);
-////
-////        System.out.println("Новая матрица inputs_2: ");
-////        for (int i = 0; i < inputs_2.length; i++) {
-////            for (int j = 0; j < inputs_2[0].length; j++) {
-////                System.out.print(" | " + inputs_2[i][j]);
-////            }
-////            System.out.println(" | ");
-////        }
-////
-////        outputs_2 = Mapper.sigmoid(inputs_2);
-////
-////        System.out.println("Новая матрица outputs_2: ");
-////        for (int i = 0; i < outputs_2.length; i++) {
-////            for (int j = 0; j < outputs_2[0].length; j++) {
-////                System.out.print(" | " + outputs_2[i][j]);
-////            }
-////            System.out.println(" | ");
-////        }
-//
-//    }
-
-
 
     @Test
     public void multiply1() {

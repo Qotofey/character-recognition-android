@@ -1,9 +1,11 @@
-package ru.qotofey.android.characterrecognition.model;
+package ru.qotofey.android.characterrecognition.model.deprecated;
 
 import java.util.List;
 
 import ru.qotofey.android.characterrecognition.app.manager.Constants;
+import ru.qotofey.android.characterrecognition.model.Sample;
 
+@Deprecated
 public class Perceptron {
 
     private Double[] mInputSignals;
@@ -54,22 +56,21 @@ public class Perceptron {
 
     public void train(List<Sample> samples) {
         mSampleList = samples;
-        train(samples.get(0).getSet(), samples.get(0).getResult()); //инициализируем веса
+//        train(samples.get(0).getSet(), samples.get(0).getResult()); //инициализируем веса
 
     }
 
     //обучение
     public void learn() {
         //ошибка есть, сеть нужно обучить
-//        int x = 0;
+        int x = 0;
         do {
             for (int i = 0; i < mSampleList.size(); i++ ) {
 //                System.out.println("Выборка = " + i);
-                mExpectedResults = mSampleList.get(i).getResult();
+//                mExpectedResults = mSampleList.get(i).getResult();
                 foreachAllLayers();
             }
-        } while (checkForErrors());
-//        } while (x++ < 1000);
+        } while (x++ < 1000);
     }
 
     public Double[] put(Double[] inputSignals) {
@@ -120,12 +121,9 @@ public class Perceptron {
                     Double weight = layer.getNeurons()[i].getInputSynapses()[j].getWeight();
                     Double signal = layer.getNeurons()[i].getInputSynapses()[j].getSignal();
 
-//                    System.out.print(" | " + weight);
-
                     errors[i][j] = (mExpectedResults[i] - neurons[i].getSignal()) * neurons[i].getDerivativeSignal(); //находим ошибку
                     layer.getNeurons()[i].getInputSynapses()[j].setWeight(weight + Constants.H * errors[i][j] * signal);
                 }
-//                System.out.println(" |||| :" + i);
             }
 
         } else {
@@ -140,12 +138,9 @@ public class Perceptron {
                     Double weight = layer.getNeurons()[i].getInputSynapses()[j].getWeight();
                     Double signal = layer.getNeurons()[i].getInputSynapses()[j].getSignal();
 
-//                    System.out.print(" | " + weight);
-
                     errors[i][j] = sum * neurons[i].getDerivativeSignal(); //находим ошибку
                     layer.getNeurons()[i].getInputSynapses()[j].setWeight(weight + Constants.H * errors[i][j] * signal);
                 }
-//                System.out.println(" |||| :" + i);
             }
         }
 

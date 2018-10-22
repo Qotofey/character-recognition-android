@@ -3,6 +3,8 @@ package ru.qotofey.android.characterrecognition.model;
 import org.junit.Before;
 import org.junit.Test;
 
+import ru.qotofey.android.characterrecognition.model.deprecated.WeightMatrix;
+
 import static org.junit.Assert.assertEquals;
 
 public class WeightMatrixTest {

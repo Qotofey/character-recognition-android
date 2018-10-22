@@ -6,6 +6,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.Timeout;
 
+import ru.qotofey.android.characterrecognition.model.deprecated.Neuron;
+import ru.qotofey.android.characterrecognition.model.deprecated.Synapse;
+
 import static junit.framework.TestCase.assertTrue;
 
 public class NeuronTest {

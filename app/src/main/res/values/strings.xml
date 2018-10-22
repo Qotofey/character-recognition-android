@@ -1,5 +1,29 @@
 <resources>
     <string name="app_name">Character Recognition</string>
     <string name="version">Version 1.0</string>
-    <string name="info_author">Timofey Shufletyuk</string>
+    <string name="info_author">The app was developed by Timofey Shufletyuk</string>
+    <string name="new_sample">New sample</string>
+    <string name="learning">Learning</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="reset">Reset</string>
+    <string name="character">Сharacter</string>
+    <string name="storage">Storage</string>
+    <string name="define">Define</string>
+    <string name="draw_on_the_canvas_characters">Draw on the canvas characters 0 to 9</string>
+
+    <string-array name="character_list">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    </string-array>
+
+
 </resources>

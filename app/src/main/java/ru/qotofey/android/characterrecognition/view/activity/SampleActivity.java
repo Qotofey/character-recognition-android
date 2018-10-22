@@ -3,13 +3,13 @@ package ru.qotofey.android.characterrecognition.view.activity;
 import android.support.v4.app.Fragment;
 
 import ru.qotofey.android.characterrecognition.R;
-import ru.qotofey.android.characterrecognition.view.fragment.MainFragment;
+import ru.qotofey.android.characterrecognition.view.fragment.SampleFragment;
 
-public class MainActivity extends BaseActivity {
+public class SampleActivity extends BaseActivity {
 
     @Override
     protected Fragment createFragment() {
-        return new MainFragment();
+        return new SampleFragment();
     }
 
     @Override
@@ -17,4 +17,3 @@ public class MainActivity extends BaseActivity {
         return R.layout.activity_base;
     }
 }
-

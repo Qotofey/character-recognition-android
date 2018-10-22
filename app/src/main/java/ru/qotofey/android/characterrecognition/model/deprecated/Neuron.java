@@ -1,9 +1,10 @@
-package ru.qotofey.android.characterrecognition.model;
+package ru.qotofey.android.characterrecognition.model.deprecated;
 
 
 import ru.qotofey.android.characterrecognition.app.manager.ActivationFunctions;
 import ru.qotofey.android.characterrecognition.app.manager.Constants;
 
+@Deprecated
 public class Neuron {
 
     private Synapse[] mInputSynapses;

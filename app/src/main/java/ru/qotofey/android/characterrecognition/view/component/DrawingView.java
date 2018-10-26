@@ -173,8 +173,8 @@ public class DrawingView extends View {
         int width = mBitmap.getWidth();
         int height = mBitmap.getHeight();
 
-        int halfWidth = width / 50;
-        int halfHeight = height / 50;
+        int halfWidth = width / 100;
+        int halfHeight = height / 100;
 
         //сжимаем картинку
         mBitmap = Bitmap.createScaledBitmap(mBitmap, halfWidth, halfHeight, false);

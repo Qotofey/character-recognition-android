@@ -35,7 +35,7 @@ public class Perceptron {
         for (Layer layer : mLayerList) {
             inputs = layer.predictOutputs(inputs);
         }
-        return inputs;
+        return inputs.println();
     }
 
     //TODO: потом заприватить

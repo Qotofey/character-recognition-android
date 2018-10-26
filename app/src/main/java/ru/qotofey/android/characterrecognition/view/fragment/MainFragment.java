@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import javax.inject.Inject;
 
@@ -32,6 +34,7 @@ public class MainFragment extends Fragment implements MainView {
     @Inject
     Context mContext;
 
+    private ProgressBar mProgressBar;
     private DrawingView mDrawingView;
     private Button mResetButton;
     private Button mDefineButton;
@@ -49,6 +52,7 @@ public class MainFragment extends Fragment implements MainView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_main, container, false);
 
+        mProgressBar = v.findViewById(R.id.progressBar);
         mDrawingView = v.findViewById(R.id.drawingView);
         mResetButton = v.findViewById(R.id.resetButton);
         mDefineButton = v.findViewById(R.id.defineButton);
@@ -63,9 +67,22 @@ public class MainFragment extends Fragment implements MainView {
         mDefineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                showLoading();
                 Double[][] array = new Double[1][];
                 array[0] = mDrawingView.getCompressBitmap();
-                mPresenter.getPerceptron().put(new Matrix(array));
+                Matrix matrix = mPresenter.getPerceptron().put(new Matrix(array));
+                Double result = 0.0;
+
+                int big = 0;
+                for (int i = 0; i < matrix.getColumnsCount(); i++) {
+                    if (matrix.get()[0][i] > result) {
+                        result = matrix.get()[0][i];
+                        big = i;
+                    }
+                }
+                Toast.makeText(getContext(), "Символ: " + big, Toast.LENGTH_LONG);
+
+                hideLoading();
             }
         });
 

@@ -76,7 +76,7 @@ public class SampleListFragment extends Fragment implements SampleListView {
         switch (item.getItemId()) {
             case R.id.learning:
                 this.showLoading();
-                mPresenter.getPerceptron().learn(mPresenter.getSampleLab().getSampleList(), 10);
+                mPresenter.getPerceptron().learn(mPresenter.getSampleLab().getSampleList(), 100);
                 this.hideLoading();
                 Log.i("SampleListFragment", "finished learning");
                 return true;

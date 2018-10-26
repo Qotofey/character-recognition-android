@@ -2,6 +2,7 @@ package ru.qotofey.android.characterrecognition.view.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -11,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import javax.inject.Inject;
 
@@ -39,6 +39,8 @@ public class MainFragment extends Fragment implements MainView {
     private Button mResetButton;
     private Button mDefineButton;
 
+    private Snackbar mSnackbar;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,22 +59,23 @@ public class MainFragment extends Fragment implements MainView {
         mResetButton = v.findViewById(R.id.resetButton);
         mDefineButton = v.findViewById(R.id.defineButton);
 
+
         mResetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mDrawingView.clear();
             }
+
         });
 
         mDefineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showLoading();
                 Double[][] array = new Double[1][];
                 array[0] = mDrawingView.getCompressBitmap();
                 Matrix matrix = mPresenter.getPerceptron().put(new Matrix(array));
-                Double result = 0.0;
 
+                Double result = 0.0;
                 int big = 0;
                 for (int i = 0; i < matrix.getColumnsCount(); i++) {
                     if (matrix.get()[0][i] > result) {
@@ -80,9 +83,17 @@ public class MainFragment extends Fragment implements MainView {
                         big = i;
                     }
                 }
-                Toast.makeText(getContext(), "Символ: " + big, Toast.LENGTH_LONG);
+                mSnackbar = Snackbar
+                        .make(v, String.valueOf(big), Snackbar.LENGTH_INDEFINITE)
+                        .setAction(R.string.dismiss, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                mSnackbar.dismiss();
+                            }
+                        });
+                mSnackbar.show();
+//                mDrawingView.clear();
 
-                hideLoading();
             }
         });
 

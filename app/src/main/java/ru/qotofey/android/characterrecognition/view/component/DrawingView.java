@@ -22,6 +22,7 @@ public class DrawingView extends View {
     private static final float TOUCH_TOLERANCE = 10;
 
     private Bitmap mBitmap;             //область рисования для вывода или сохранения
+    private Bitmap mBitmapMini;             //область рисования для вывода или сохранения
     private Canvas mBitmapCanvas;       //используется для рисования на Bitmap
     private final Paint mPaintScreen;   //используется для вывода Bitmap на экран
     private final Paint mPaintLine;     //используется для рисования линий на Bitmap
@@ -173,11 +174,11 @@ public class DrawingView extends View {
         int width = mBitmap.getWidth();
         int height = mBitmap.getHeight();
 
-        int halfWidth = width / 100;
-        int halfHeight = height / 100;
+        int halfWidth = width / 200;
+        int halfHeight = height / 200;
 
         //сжимаем картинку
-        mBitmap = Bitmap.createScaledBitmap(mBitmap, halfWidth, halfHeight, false);
+        mBitmapMini = Bitmap.createScaledBitmap(mBitmap, halfWidth, halfHeight, false);
     }
 
     public Bitmap getBitmap() {
@@ -187,8 +188,8 @@ public class DrawingView extends View {
     public Double[] getCompressBitmap() {
         compressBitmap();
 
-        ByteBuffer buffer = ByteBuffer.allocate(mBitmap.getByteCount());
-        mBitmap.copyPixelsToBuffer(buffer);
+        ByteBuffer buffer = ByteBuffer.allocate(mBitmapMini.getByteCount());
+        mBitmapMini.copyPixelsToBuffer(buffer);
         byte[] bytes = buffer.array();
 
         Double[] list = new Double[bytes.length / 4];

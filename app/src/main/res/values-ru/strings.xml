@@ -11,6 +11,7 @@
     <string name="storage">Место хранения</string>
     <string name="define">Определить</string>
     <string name="draw_on_the_canvas_characters">Нарисуйте на канве символы от 0 до 9</string>
+    <string name="dismiss">Отклонить</string>
 
     <string-array name="character_list">
         <item>0 - нуль</item>

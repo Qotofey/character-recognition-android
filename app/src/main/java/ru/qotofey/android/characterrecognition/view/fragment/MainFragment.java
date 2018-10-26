@@ -16,6 +16,7 @@ import javax.inject.Inject;
 import ru.qotofey.android.characterrecognition.App;
 import ru.qotofey.android.characterrecognition.R;
 import ru.qotofey.android.characterrecognition.app.navigation.Navigation;
+import ru.qotofey.android.characterrecognition.model.Matrix;
 import ru.qotofey.android.characterrecognition.presenter.MainPresenter;
 import ru.qotofey.android.characterrecognition.view.MainView;
 import ru.qotofey.android.characterrecognition.view.activity.SampleListActivity;
@@ -62,7 +63,9 @@ public class MainFragment extends Fragment implements MainView {
         mDefineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: распознать
+                Double[][] array = new Double[1][];
+                array[0] = mDrawingView.getCompressBitmap();
+                mPresenter.getPerceptron().put(new Matrix(array));
             }
         });
 

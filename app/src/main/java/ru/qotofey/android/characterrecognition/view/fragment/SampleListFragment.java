@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -75,6 +76,9 @@ public class SampleListFragment extends Fragment implements SampleListView {
         switch (item.getItemId()) {
             case R.id.learning:
                 this.showLoading();
+                mPresenter.getPerceptron().learn(mPresenter.getSampleLab().getSampleList(), 10);
+
+                Log.i("SampleListFragment", "finished learning");
                 return true;
             case R.id.newSample:
                 mNavigation.invokeNewActivity(getActivity(), SampleActivity.class, false);
@@ -85,7 +89,7 @@ public class SampleListFragment extends Fragment implements SampleListView {
     }
 
     private void updateUI() {
-        List<Sample> sampleList = mPresenter.getModel().getSampleList();
+        List<Sample> sampleList = mPresenter.getSampleLab().getSampleList();
         if (mAdapter == null) {
             mAdapter = new SampleListAdapter(getActivity());
             mAdapter.setSampleList(sampleList);

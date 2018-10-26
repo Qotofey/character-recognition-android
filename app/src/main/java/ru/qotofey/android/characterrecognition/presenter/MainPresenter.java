@@ -1,13 +1,17 @@
 package ru.qotofey.android.characterrecognition.presenter;
 
+import javax.inject.Inject;
+
 import ru.qotofey.android.characterrecognition.App;
+import ru.qotofey.android.characterrecognition.model.Perceptron;
 import ru.qotofey.android.characterrecognition.view.MainView;
 
 public class MainPresenter {
 
     private MainView mView;
 
-//    @Inject Perceptron mPerceptron;
+    @Inject
+    Perceptron mPerceptron;
 
     public MainPresenter() {
         App.getComponent().inject(this);
@@ -18,14 +22,10 @@ public class MainPresenter {
     }
 
     public void init() {
-        Double[] set = new Double[] {
-                1.0, 1.0, 0.0,
 
-        };
-        Double[] result = new Double[] {
-                -1.0, 1.0, -1.0
-        };
+    }
 
-//        mPerceptron.train(set, result);
+    public Perceptron getPerceptron() {
+        return mPerceptron;
     }
 }

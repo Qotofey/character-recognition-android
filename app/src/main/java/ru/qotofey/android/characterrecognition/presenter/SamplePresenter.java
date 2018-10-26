@@ -3,6 +3,7 @@ package ru.qotofey.android.characterrecognition.presenter;
 import javax.inject.Inject;
 
 import ru.qotofey.android.characterrecognition.App;
+import ru.qotofey.android.characterrecognition.model.Perceptron;
 import ru.qotofey.android.characterrecognition.model.SampleLab;
 import ru.qotofey.android.characterrecognition.view.SampleView;
 
@@ -10,6 +11,8 @@ public class SamplePresenter {
 
     private SampleView mView;
 
+    @Inject
+    Perceptron mPerceptron;
     @Inject
     SampleLab mSampleLab;
 
@@ -25,7 +28,11 @@ public class SamplePresenter {
 
     }
 
-    public SampleLab getModel() {
+    public SampleLab getSampleLab() {
         return mSampleLab;
+    }
+
+    public Perceptron getPerceptron() {
+        return mPerceptron;
     }
 }

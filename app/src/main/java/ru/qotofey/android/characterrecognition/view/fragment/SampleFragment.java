@@ -50,9 +50,10 @@ public class SampleFragment extends Fragment implements SampleView {
                     mDrawingView.getCompressBitmap(),
                     mCharactorSpinner.getSelectedItemPosition()
             );
-            mPresenter.getModel().addSample(sample);
+            mPresenter.getPerceptron().build(sample.getSet()[0].length, sample.getExpected()[0].length);
+            mPresenter.getSampleLab().addSample(sample);
             mDrawingView.clear();
-            Log.e("TAG", String.valueOf(mPresenter.getModel().getSampleList().size()));
+            Log.e("TAG", String.valueOf(mPresenter.getSampleLab().getSampleList().size()));
             getActivity().finish();
         });
         return v;

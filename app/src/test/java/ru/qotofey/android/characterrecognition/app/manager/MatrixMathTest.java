@@ -303,23 +303,15 @@ public class MatrixMathTest {
         Matrix EXPECTED = new Matrix(expected);
         Matrix WEIGHT_0_1 = new Matrix(weights_0_1);
         Matrix WEIGHT_1_2 = new Matrix(weights_1_2);
-//        Double[][] inputs_1 = MatrixMath.multiply(inputs, weights_0_1);
-//        Double[][] outputs_1 = Mapper.sigmoid(inputs_1);
+
         Matrix inputs1 = INPUTS.multiply(WEIGHT_0_1);
         Matrix outputs1 = Mapper.sigmoid(inputs1);
-//        Double[][] inputs_2 = MatrixMath.multiply(outputs_1, weights_1_2);
-//        Double[][] outputs_2 = Mapper.sigmoid(inputs_2);
+
         Matrix inputs2 = outputs1.multiply(WEIGHT_1_2);
         Matrix outputs2 = Mapper.sigmoid(inputs2);
-//        Double[][] actualPredict = outputs_2;
+
         Matrix ACTUAL_PREDICT = outputs2;
 
-//        Double[][] errorLayer2;
-//        Double[][] gradientLayer2;
-//        Double[][] weightsDeltaLayer2;
-//        Double[][] errorLayer1;
-//        Double[][] gradientLayer1;
-//        Double[][] weightsDeltaLayer1;
         Matrix ERROR_LAYER_2;
         Matrix ERROR_LAYER_1;
         Matrix GRADIENT_LAYER_2;
@@ -327,7 +319,6 @@ public class MatrixMathTest {
         Matrix WEIGHT_DELTA_LAYER_2;
         Matrix WEIGHT_DELTA_LAYER_1;
 
-//        errorLayer2 = MatrixMath.difference(actualPredict, expected);
         ERROR_LAYER_2 = ACTUAL_PREDICT.difference(EXPECTED);
         double x = 0.0;
 //        for (int i = 0; i < errorLayer2.length; i++) {
@@ -362,24 +353,11 @@ public class MatrixMathTest {
                         .transpose()
         );
         weights_1_2 = WEIGHT_1_2.get();
-//        errorLayer1 = MatrixMath.multiply(weightsDeltaLayer2, MatrixMath.T(weights_1_2));
-//        gradientLayer1 = Mapper.derivativeSigmoid(outputs_1);
+
         ERROR_LAYER_1 = WEIGHT_DELTA_LAYER_2.multiply(WEIGHT_1_2.transpose());
         GRADIENT_LAYER_1 = Mapper.derivativeSigmoid(outputs1);
-//        weightsDeltaLayer1 = MatrixMath.vectorsMultiply(errorLayer1, gradientLayer1);
         WEIGHT_DELTA_LAYER_1 = ERROR_LAYER_1.vectorsMultiply(GRADIENT_LAYER_1);
-//        weights_0_1= MatrixMath.difference(
-//                weights_0_1,
-//                MatrixMath.T(
-//                        MatrixMath.multiply(
-//                                MatrixMath.multiply(
-//                                        MatrixMath.T(weightsDeltaLayer1),
-//                                        inputs
-//                                ),
-//                                Constants.H
-//                        )
-//                )
-//        );
+
         WEIGHT_0_1 = WEIGHT_0_1.difference(
                 WEIGHT_DELTA_LAYER_1
                         .transpose()

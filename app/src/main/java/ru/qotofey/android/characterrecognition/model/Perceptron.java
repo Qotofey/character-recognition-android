@@ -1,7 +1,5 @@
 package ru.qotofey.android.characterrecognition.model;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +33,7 @@ public class Perceptron {
         for (Layer layer : mLayerList) {
             inputs = layer.predictOutputs(inputs);
         }
-        return inputs.println();
+        return inputs;
     }
 
     //TODO: потом заприватить
@@ -78,7 +76,7 @@ public class Perceptron {
                         new Matrix(sample.getSet()),
                         new Matrix(sample.getExpected())
                 );
-                Log.e("TAG", "iteration: " + i);
+//                Log.e("TAG", "iteration: " + i);
             }
         }
     }

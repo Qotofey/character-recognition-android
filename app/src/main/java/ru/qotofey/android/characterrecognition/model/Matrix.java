@@ -36,11 +36,6 @@ public class Matrix {
     }
 
     public Matrix difference(Matrix matrix) {
-//        System.out.println(mMatrix.length);
-//        System.out.println(matrix.get().length);
-//        System.out.println(mMatrix[0].length);
-//        System.out.println(matrix.get()[0].length);
-
         if (mMatrix.length != matrix.get().length || mMatrix[0].length != matrix.get()[0].length) {
             throw new ArithmeticException(); //TODO: можно написать своё исключение
         }

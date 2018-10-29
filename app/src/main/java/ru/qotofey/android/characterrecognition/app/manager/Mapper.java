@@ -52,4 +52,52 @@ public class Mapper {
         return resultMatrix;
     }
 
+    public static Double[][] bipolar(Double[][] matrix) {
+        Double[][] resultMatrix = matrix;
+        int n = matrix.length;
+        int m = matrix[0].length;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                resultMatrix[i][j] = ActivationFunctions.bipolar(matrix[i][j]);
+            }
+        }
+        return resultMatrix;
+    }
+
+    public static Double[][] derivativeBipolar(Double[][] matrix) {
+        Double[][] resultMatrix = matrix;
+        int n = matrix.length;
+        int m = matrix[0].length;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                resultMatrix[i][j] = ActivationFunctions.derivativeBipolar(matrix[i][j]);
+            }
+        }
+        return resultMatrix;
+    }
+
+    public static Matrix bipolar(Matrix matrix) {
+        Matrix resultMatrix = matrix;
+        int n = matrix.getRowsCount();
+        int m = matrix.getColumnsCount();
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                resultMatrix.get()[i][j] = ActivationFunctions.bipolar(matrix.get()[i][j]);
+            }
+        }
+        return resultMatrix;
+    }
+
+    public static Matrix derivativeBipolar(Matrix matrix) {
+        Matrix resultMatrix = matrix;
+        int n = matrix.getRowsCount();
+        int m = matrix.getColumnsCount();
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                resultMatrix.get()[i][j] = ActivationFunctions.derivativeBipolar(matrix.get()[i][j]);
+            }
+        }
+        return resultMatrix;
+    }
+
 }

@@ -294,22 +294,6 @@ public class PerceptronTest {
                 }
         })).println();
 
-//        mPerceptron.train(
-//                new Matrix(new Double[][] {
-//                        {
-//                                0.0, 0.0, 1.0,
-//                                0.0, 0.0, 1.0,
-//                                0.0, 0.0, 1.0,
-//                                0.0, 0.0, 1.0,
-//                                0.0, 0.0, 1.0,
-//                        }
-//                }),
-//                new Matrix(new Double[][] {
-//                        {
-//                                0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-//                        }
-//                })
-//        );
     }
 
     @Test
